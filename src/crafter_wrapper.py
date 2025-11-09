@@ -1,87 +1,160 @@
-import pathlib
-from collections import deque
+"""
+Wrapper for Crafter environment with preprocessing and logging.
+Based on starter code structure.
+"""
 
-import crafter
 import numpy as np
-import torch
-from PIL import Image
+import crafter
 
 
-class Env:
-    def __init__(self, mode, args):
-        assert mode in (
-            "train",
-            "eval",
-        ), "`mode` argument can either be `train` or `eval`"
-        self.device = args.device
-        env = crafter.Env()
-        if mode == "train":
-            env = crafter.Recorder(
-                env,
-                pathlib.Path(args.logdir),
-                save_stats=True,
-                save_video=False,
-                save_episode=False,
-            )
-        env = ResizeImage(env)
-        env = GrayScale(env)
-        self.env = env
-        self.action_space = env.action_space
-        self.window = args.history_length  # Number of frames to concatenate
-        self.state_buffer = deque([], maxlen=args.history_length)
+class CrafterWrapper:
+  """
+    Wrapper for Crafter environment that provides:
+    - Observation preprocessing (convert to CHW format)
+    - Achievement tracking
+    - Episode statistics logging
+    """
 
-    def reset(self):
-        for _ in range(self.window):
-            self.state_buffer.append(torch.zeros(84, 84, device=self.device))
-        obs = self.env.reset()
-        obs = torch.tensor(obs, dtype=torch.float32, device=self.device).div_(255)
-        self.state_buffer.append(obs)
-        return torch.stack(list(self.state_buffer), 0)
+  def __init__(self, env_reward=True, log_dir=None, seed=None):
+    """
+        Initialize Crafter wrapper.
 
-    def step(self, action):
-        obs, reward, done, info = self.env.step(action)
-        obs = torch.tensor(obs, dtype=torch.float32, device=self.device).div_(255)
-        self.state_buffer.append(obs)
-        return torch.stack(list(self.state_buffer), 0), reward, done, info
+        Args:
+            env_reward: Whether to use environment rewards (True) or unsupervised (False)
+            log_dir: Directory for logging (optional)
+            seed: Random seed (optional)
+        """
+    # Create Crafter environment
+    self.env = crafter.Env(reward=env_reward, size=(64, 64))
 
+    self.log_dir = log_dir
+    self.env_reward = env_reward
 
-class GrayScale:
-    def __init__(self, env):
-        self._env = env
+    if seed is not None:
+      self.env.seed(seed)
 
-    def __getattr__(self, name):
-        return getattr(self._env, name)
+    # Episode tracking
+    self.episode_achievements = {}
+    self.episode_return = 0
+    self.episode_length = 0
 
-    def step(self, action):
-        obs, reward, done, info = self._env.step(action)
-        obs = obs.mean(-1)
-        return obs, reward, done, info
+    # Achievement tracking across all episodes
+    self.all_achievements = set()
 
-    def reset(self):
-        obs = self._env.reset()
-        obs = obs.mean(-1)
-        return obs
+  @property
+  def observation_space(self):
+    """Return observation space (modified to CHW format)."""
+    # Crafter gives HWC (64, 64, 3), we want CHW (3, 64, 64)
+    return type('Space', (), {
+      'shape': (3, 64, 64),
+      'dtype': np.float32
+    })()
 
+  @property
+  def action_space(self):
+    """Return action space."""
+    return type('Space', (), {
+      'n': self.env.action_space.n
+    })()
 
-class ResizeImage:
-    def __init__(self, env):
-        self._env = env
+  def reset(self):
+    """
+        Reset environment and return initial observation.
 
-    def __getattr__(self, name):
-        return getattr(self._env, name)
+        Returns:
+            obs: Initial observation in CHW format (3, 64, 64)
+        """
+    # Reset episode tracking
+    self.episode_achievements = {}
+    self.episode_return = 0
+    self.episode_length = 0
 
-    def step(self, action):
-        obs, reward, done, info = self._env.step(action)
-        obs = self._resize(obs)
-        return obs, reward, done, info
+    # Reset environment
+    obs = self.env.reset()
 
-    def reset(self):
-        obs = self._env.reset()
-        obs = self._resize(obs)
-        return obs
+    # Convert from HWC to CHW and normalize
+    obs = self._preprocess_observation(obs)
 
-    def _resize(self, image):
-        image = Image.fromarray(image)
-        image = image.resize((84, 84), Image.NEAREST)
-        image = np.array(image)
-        return image
+    return obs
+
+  def step(self, action):
+    """
+        Take a step in the environment.
+
+        Args:
+            action: Action to take (int)
+
+        Returns:
+            obs: Next observation (3, 64, 64)
+            reward: Reward received
+            done: Whether episode ended
+            info: Additional information dictionary
+        """
+    # Take step
+    obs, reward, done, info = self.env.step(action)
+
+    # Preprocess observation
+    obs = self._preprocess_observation(obs)
+
+    # Track episode stats
+    self.episode_return += reward
+    self.episode_length += 1
+
+    # Track achievements
+    if 'achievements' in info:
+      for achievement, unlocked in info['achievements'].items():
+        if unlocked:
+          self.episode_achievements[achievement] = \
+            self.episode_achievements.get(achievement, 0) + 1
+          self.all_achievements.add(achievement)
+
+    # Add episode info if done
+    if done:
+      info['episode_return'] = self.episode_return
+      info['episode_length'] = self.episode_length
+      info['episode_achievements'] = self.episode_achievements.copy()
+      info['num_achievements_unlocked'] = len(self.episode_achievements)
+
+    return obs, reward, done, info
+
+  def _preprocess_observation(self, obs):
+    """
+        Preprocess observation: HWC -> CHW and normalize to [0, 1].
+
+        Args:
+            obs: Observation in HWC format (64, 64, 3) with values in [0, 255]
+
+        Returns:
+            processed: Observation in CHW format (3, 64, 64) with values in [0, 1]
+        """
+    # Convert from HWC to CHW
+    obs = np.transpose(obs, (2, 0, 1))
+
+    # Normalize to [0, 1]
+    obs = obs.astype(np.float32) / 255.0
+
+    return obs
+
+  def close(self):
+    """Close the environment."""
+    self.env.close()
+
+  def seed(self, seed):
+    """Set random seed."""
+    self.env.seed(seed)
+
+  def render(self, mode='rgb_array'):
+    """Render the environment."""
+    return self.env.render(mode=mode)
+
+  def get_achievement_summary(self):
+    """
+        Get summary of achievements unlocked throughout training.
+
+        Returns:
+            summary: Dictionary with achievement statistics
+        """
+    return {
+      'total_achievements_discovered': len(self.all_achievements),
+      'achievements': list(self.all_achievements)
+    }

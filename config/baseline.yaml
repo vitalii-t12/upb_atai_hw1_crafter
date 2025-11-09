@@ -1,0 +1,35 @@
+# Base DQN Configuration
+# Standard DQN with target network
+
+# Training
+steps: 1000000
+eval_interval: 50000
+eval_episodes: 20
+seed: 0
+
+# Agent
+lr: 0.0001
+batch_size: 32
+buffer_size: 100000
+gamma: 0.99
+target_update_freq: 2500
+training_starts: 5000
+update_freq: 4
+
+# Exploration
+epsilon_start: 1.0
+epsilon_end: 0.01
+epsilon_decay_steps: 50000
+
+# Enhancements
+double_dqn: true
+dueling: true
+n_step: 1
+munchausen: false
+
+# Network
+hidden_size: 512
+grad_clip: 10.0
+
+# Checkpointing
+save_freq: 100000

@@ -1,0 +1,19 @@
+# Core dependencies
+torch>=1.9.0
+numpy>=1.19.0
+crafter>=1.4.0
+
+# Visualization and analysis
+matplotlib>=3.3.0
+tabulate>=0.8.0
+
+# Environment and utilities
+gym>=0.18.0
+pillow>=8.0.0
+
+# Optional: For video recording and visualization
+imageio>=2.9.0
+imageio-ffmpeg>=0.4.0
+
+# Optional: For tensorboard logging (if you want to add it)
+# tensorboard>=2.5.0
