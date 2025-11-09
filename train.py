@@ -110,6 +110,20 @@ def set_seed(seed):
     torch.backends.cudnn.benchmark = False
 
 
+def format_time(seconds):
+  """Format seconds into human readable time string."""
+  hours = int(seconds // 3600)
+  minutes = int((seconds % 3600) // 60)
+  secs = int(seconds % 60)
+
+  if hours > 0:
+    return f"{hours}h {minutes}m {secs}s"
+  elif minutes > 0:
+    return f"{minutes}m {secs}s"
+  else:
+    return f"{secs}s"
+
+
 def evaluate(agent, env, num_episodes=20, device='cpu'):
   """Evaluate agent performance."""
   episode_rewards = []
@@ -210,6 +224,7 @@ def train(args):
   episode_num = 0
 
   start_time = time.time()
+  last_checkpoint_time = start_time
 
   for step in range(start_step, args.steps):
     # Epsilon decay
@@ -269,8 +284,16 @@ def train(args):
 
     # Evaluation
     if (step + 1) % args.eval_interval == 0:
+      current_time = time.time()
+      elapsed_time = current_time - start_time
+      progress = (step + 1) / args.steps
+      steps_per_sec = (step + 1 - start_step) / elapsed_time if elapsed_time > 0 else 0
+      eta = (args.steps - step - 1) / steps_per_sec if steps_per_sec > 0 else 0
+
       logger.print_and_log(f"\n{'='*60}")
-      logger.print_and_log(f"Evaluating at step {step + 1}...")
+      logger.print_and_log(f"Evaluating at step {step + 1}/{args.steps} ({progress*100:.1f}%)")
+      logger.print_and_log(f"Elapsed: {format_time(elapsed_time)} | ETA: {format_time(eta)} | Speed: {steps_per_sec:.1f} steps/s")
+
       eval_results = evaluate(agent, eval_env, args.eval_episodes, args.device)
 
       logger.log_scalar('eval/mean_reward', eval_results['mean_reward'], step)
@@ -292,13 +315,22 @@ def train(args):
 
     # Save checkpoint
     if (step + 1) % args.save_freq == 0:
+      current_time = time.time()
+      elapsed_total = current_time - start_time
+      time_since_last = current_time - last_checkpoint_time
+      last_checkpoint_time = current_time
+
       save_path = os.path.join(args.logdir, f'checkpoint_{step + 1}.pt')
       save_checkpoint(save_path, agent, step + 1, logger)
-      logger.print_and_log(f"Saved checkpoint to {save_path}")
+      logger.print_and_log(f"[CHECKPOINT] Saved to {save_path}")
+      logger.print_and_log(f"[CHECKPOINT] Total elapsed: {format_time(elapsed_total)} | "
+                           f"Since last checkpoint: {format_time(time_since_last)}")
 
   # Final evaluation
+  total_training_time = time.time() - start_time
   logger.print_and_log("\n" + "="*60)
   logger.print_and_log("FINAL EVALUATION")
+  logger.print_and_log(f"Total training time: {format_time(total_training_time)}")
   logger.print_and_log("="*60)
   final_results = evaluate(agent, eval_env, args.eval_episodes, args.device)
   logger.print_and_log(f"Final Mean Reward: {final_results['mean_reward']:.2f} ± "
@@ -345,6 +377,10 @@ def train(args):
   if 'train/epsilon' in logger.metrics and len(logger.metrics['train/epsilon']) > 0:
     training_stats['final_epsilon'] = logger.metrics['train/epsilon'][-1]
 
+  # Add training time
+  training_stats['training_time_seconds'] = total_training_time
+  training_stats['training_time_formatted'] = format_time(total_training_time)
+
   # Update metadata with end time, duration, and training stats
   update_metadata_end(metadata_path, training_stats)
 
@@ -358,6 +394,8 @@ def train(args):
   # Log final statistics summary
   if training_stats:
     logger.print_and_log("\nFinal Training Statistics:")
+    if 'training_time_formatted' in training_stats:
+      logger.print_and_log(f"  Training Time: {training_stats['training_time_formatted']}")
     if 'final_eval_reward_mean' in training_stats:
       logger.print_and_log(f"  Final Eval Reward: {training_stats['final_eval_reward_mean']:.2f} ± {training_stats.get('final_eval_reward_std', 0):.2f}")
     if 'best_eval_reward' in training_stats:

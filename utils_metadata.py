@@ -258,6 +258,8 @@ def format_metadata_summary(metadata):
     if 'training_stats' in metadata:
         stats = metadata['training_stats']
         lines.append(f"\nFinal Training Statistics:")
+        if 'training_time_formatted' in stats:
+            lines.append(f"  Training Time: {stats['training_time_formatted']}")
         if 'final_eval_reward_mean' in stats:
             lines.append(f"  Final Eval Reward: {stats['final_eval_reward_mean']:.2f} ± {stats.get('final_eval_reward_std', 0):.2f}")
         if 'best_eval_reward' in stats:
