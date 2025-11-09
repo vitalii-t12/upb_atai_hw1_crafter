@@ -16,6 +16,7 @@ import torch
 from agent import DQNAgent
 from src.crafter_wrapper import CrafterWrapper
 from utils import Logger, save_checkpoint, load_checkpoint
+from utils_metadata import collect_metadata, save_metadata, update_metadata_end, format_metadata_summary
 
 
 def parse_args():
@@ -65,11 +66,15 @@ def parse_args():
                       help='Steps to decay epsilon')
 
   # Enhancements
-  parser.add_argument('--double-dqn', action='store_true', default=True,
+  parser.add_argument('--double-dqn', action='store_true', default=False,
                       help='Use Double DQN')
-  parser.add_argument('--dueling', action='store_true', default=True,
+  parser.add_argument('--no-double-dqn', dest='double_dqn', action='store_false',
+                      help='Disable Double DQN')
+  parser.add_argument('--dueling', action='store_true', default=False,
                       help='Use Dueling architecture')
-  parser.add_argument('--n-step', type=int, default=3,
+  parser.add_argument('--no-dueling', dest='dueling', action='store_false',
+                      help='Disable Dueling architecture')
+  parser.add_argument('--n-step', type=int, default=1,
                       help='N-step returns (1 for standard TD)')
   parser.add_argument('--munchausen', action='store_true', default=False,
                       help='Use Munchausen-DQN')
@@ -145,17 +150,21 @@ def evaluate(agent, env, num_episodes=20, device='cpu'):
 
 def train(args):
   """Main training loop."""
-  # Setup
-  print(f"Training DQN agent on Crafter")
-  print(f"Device: {args.device}")
-  print(f"Seed: {args.seed}")
-  print(f"Double DQN: {args.double_dqn}")
-  print(f"Dueling: {args.dueling}")
-  print(f"N-step: {args.n_step}")
-  print(f"Munchausen: {args.munchausen}")
-
   set_seed(args.seed)
   os.makedirs(args.logdir, exist_ok=True)
+
+  # Initialize logger early
+  logger = Logger(args.logdir)
+
+  # Collect and save metadata
+  metadata = collect_metadata('training_run', vars(args))
+  metadata_path = os.path.join(args.logdir, 'metadata.json')
+  save_metadata(metadata, metadata_path)
+
+  # Log metadata summary
+  summary = format_metadata_summary(metadata)
+  logger.print_and_log(summary)
+  logger.print_and_log("")
 
   # Create environments
   train_env = CrafterWrapper(env_reward=True, log_dir=os.path.join(args.logdir, 'train'))
@@ -183,14 +192,11 @@ def train(args):
     munchausen_tau=args.munchausen_tau
   )
 
-  # Initialize logger
-  logger = Logger(args.logdir)
-
   # Resume from checkpoint if specified
   start_step = 0
   if args.resume:
     start_step = load_checkpoint(args.resume, agent, logger)
-    print(f"Resumed from step {start_step}")
+    logger.print_and_log(f"Resumed from step {start_step}")
 
   # Training loop
   obs = train_env.reset()
@@ -253,12 +259,13 @@ def train(args):
       if episode_num % 10 == 0:
         elapsed = time.time() - start_time
         fps = step / elapsed if elapsed > 0 else 0
-        print(f"Step: {step}/{args.steps} | Episode: {episode_num} | "
-              f"Epsilon: {epsilon:.3f} | FPS: {fps:.0f}")
+        logger.print_and_log(f"Step: {step}/{args.steps} | Episode: {episode_num} | "
+                             f"Epsilon: {epsilon:.3f} | FPS: {fps:.0f}")
 
     # Evaluation
     if (step + 1) % args.eval_interval == 0:
-      print(f"\nEvaluating at step {step + 1}...")
+      logger.print_and_log(f"\n{'='*60}")
+      logger.print_and_log(f"Evaluating at step {step + 1}...")
       eval_results = evaluate(agent, eval_env, args.eval_episodes, args.device)
 
       logger.log_scalar('eval/mean_reward', eval_results['mean_reward'], step)
@@ -269,34 +276,57 @@ def train(args):
       for achievement, rate in eval_results['achievements'].items():
         logger.log_scalar(f'eval/achievement_{achievement}', rate, step)
 
-      print(f"Eval - Mean Reward: {eval_results['mean_reward']:.2f} ± "
-            f"{eval_results['std_reward']:.2f}, "
-            f"Mean Length: {eval_results['mean_length']:.0f}")
-      print(f"Achievements unlocked: {len(eval_results['achievements'])}/22")
+      logger.print_and_log(f"Eval - Mean Reward: {eval_results['mean_reward']:.2f} ± "
+                           f"{eval_results['std_reward']:.2f}, "
+                           f"Mean Length: {eval_results['mean_length']:.0f}")
+      logger.print_and_log(f"Achievements unlocked: {len(eval_results['achievements'])}/22")
+      logger.print_and_log(f"{'='*60}\n")
+
+      # Save metrics after each evaluation (for safety in case of crashes)
+      logger.save_metrics()
 
     # Save checkpoint
     if (step + 1) % args.save_freq == 0:
       save_path = os.path.join(args.logdir, f'checkpoint_{step + 1}.pt')
       save_checkpoint(save_path, agent, step + 1, logger)
-      print(f"Saved checkpoint to {save_path}")
+      logger.print_and_log(f"Saved checkpoint to {save_path}")
 
   # Final evaluation
-  print("\nFinal evaluation...")
+  logger.print_and_log("\n" + "="*60)
+  logger.print_and_log("FINAL EVALUATION")
+  logger.print_and_log("="*60)
   final_results = evaluate(agent, eval_env, args.eval_episodes, args.device)
-  print(f"Final Mean Reward: {final_results['mean_reward']:.2f} ± "
-        f"{final_results['std_reward']:.2f}")
-  print(f"Final Achievements: {len(final_results['achievements'])}/22")
+  logger.print_and_log(f"Final Mean Reward: {final_results['mean_reward']:.2f} ± "
+                       f"{final_results['std_reward']:.2f}")
+  logger.print_and_log(f"Final Achievements: {len(final_results['achievements'])}/22")
+
+  # Log final achievement details
+  if final_results['achievements']:
+    logger.print_and_log("\nFinal Achievement Success Rates:")
+    for achievement, rate in sorted(final_results['achievements'].items(),
+                                     key=lambda x: x[1], reverse=True):
+      achievement_name = achievement.replace('eval/achievement_', '')
+      logger.print_and_log(f"  {achievement_name}: {rate:.1f}%")
 
   # Save final model
   save_path = os.path.join(args.logdir, 'final_model.pt')
   save_checkpoint(save_path, agent, args.steps, logger)
-  print(f"Saved final model to {save_path}")
+  logger.print_and_log(f"\nSaved final model to {save_path}")
 
   # Close environments
   train_env.close()
   eval_env.close()
 
-  print("\nTraining complete!")
+  # Update metadata with end time and duration
+  update_metadata_end(metadata_path)
+
+  # Save final metrics to disk
+  logger.print_and_log(f"Metrics saved to {args.logdir}/metrics.json")
+  logger.print_and_log(f"Metadata saved to {metadata_path}")
+  logger.print_and_log("="*60)
+  logger.print_and_log("TRAINING COMPLETE!")
+  logger.print_and_log("="*60)
+  logger.close()
 
 
 if __name__ == '__main__':
