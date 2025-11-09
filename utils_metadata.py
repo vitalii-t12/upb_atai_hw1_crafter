@@ -157,8 +157,14 @@ def save_metadata(metadata, filepath):
         json.dump(metadata, f, indent=2)
 
 
-def update_metadata_end(filepath):
-    """Update metadata with end timestamp."""
+def update_metadata_end(filepath, training_stats=None):
+    """
+    Update metadata with end timestamp and training statistics.
+
+    Args:
+        filepath: Path to metadata JSON file
+        training_stats: Optional dict with final training statistics
+    """
     with open(filepath, 'r') as f:
         metadata = json.load(f)
 
@@ -176,6 +182,10 @@ def update_metadata_end(filepath):
         'hours': duration_seconds / 3600,
         'human_readable': format_duration(duration_seconds)
     }
+
+    # Add training statistics if provided
+    if training_stats:
+        metadata['training_stats'] = training_stats
 
     with open(filepath, 'w') as f:
         json.dump(metadata, f, indent=2)
@@ -243,6 +253,21 @@ def format_metadata_summary(metadata):
     lines.append(f"\nExperiment Arguments:")
     for key, value in sorted(metadata['arguments'].items()):
         lines.append(f"  {key}: {value}")
+
+    # Training statistics (if available)
+    if 'training_stats' in metadata:
+        stats = metadata['training_stats']
+        lines.append(f"\nFinal Training Statistics:")
+        if 'final_eval_reward_mean' in stats:
+            lines.append(f"  Final Eval Reward: {stats['final_eval_reward_mean']:.2f} ± {stats.get('final_eval_reward_std', 0):.2f}")
+        if 'best_eval_reward' in stats:
+            lines.append(f"  Best Eval Reward: {stats['best_eval_reward']:.2f}")
+        if 'total_episodes' in stats:
+            lines.append(f"  Total Episodes: {stats['total_episodes']}")
+        if 'final_loss' in stats:
+            lines.append(f"  Final Loss: {stats['final_loss']:.4f}")
+        if 'final_epsilon' in stats:
+            lines.append(f"  Final Epsilon: {stats['final_epsilon']:.4f}")
 
     lines.append("=" * 70)
 

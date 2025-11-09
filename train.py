@@ -322,8 +322,31 @@ def train(args):
   train_env.close()
   eval_env.close()
 
-  # Update metadata with end time and duration
-  update_metadata_end(metadata_path)
+  # Collect final training statistics
+  training_stats = {}
+
+  # Get final and best evaluation rewards
+  if 'eval/mean_reward' in logger.metrics and len(logger.metrics['eval/mean_reward']) > 0:
+    training_stats['final_eval_reward_mean'] = logger.metrics['eval/mean_reward'][-1]
+    training_stats['best_eval_reward'] = max(logger.metrics['eval/mean_reward'])
+
+  if 'eval/std_reward' in logger.metrics and len(logger.metrics['eval/std_reward']) > 0:
+    training_stats['final_eval_reward_std'] = logger.metrics['eval/std_reward'][-1]
+
+  # Get total episodes
+  if 'train/episode_reward' in logger.metrics:
+    training_stats['total_episodes'] = len(logger.metrics['train/episode_reward'])
+
+  # Get final loss (if available)
+  if 'train/loss' in logger.metrics and len(logger.metrics['train/loss']) > 0:
+    training_stats['final_loss'] = logger.metrics['train/loss'][-1]
+
+  # Get final epsilon (if available)
+  if 'train/epsilon' in logger.metrics and len(logger.metrics['train/epsilon']) > 0:
+    training_stats['final_epsilon'] = logger.metrics['train/epsilon'][-1]
+
+  # Update metadata with end time, duration, and training stats
+  update_metadata_end(metadata_path, training_stats)
 
   # Save final metrics to disk
   logger.print_and_log(f"Metrics saved to {args.logdir}/metrics.json")
@@ -331,6 +354,21 @@ def train(args):
   logger.print_and_log("="*60)
   logger.print_and_log("TRAINING COMPLETE!")
   logger.print_and_log("="*60)
+
+  # Log final statistics summary
+  if training_stats:
+    logger.print_and_log("\nFinal Training Statistics:")
+    if 'final_eval_reward_mean' in training_stats:
+      logger.print_and_log(f"  Final Eval Reward: {training_stats['final_eval_reward_mean']:.2f} ± {training_stats.get('final_eval_reward_std', 0):.2f}")
+    if 'best_eval_reward' in training_stats:
+      logger.print_and_log(f"  Best Eval Reward: {training_stats['best_eval_reward']:.2f}")
+    if 'total_episodes' in training_stats:
+      logger.print_and_log(f"  Total Episodes: {training_stats['total_episodes']}")
+    if 'final_loss' in training_stats:
+      logger.print_and_log(f"  Final Loss: {training_stats['final_loss']:.4f}")
+    if 'final_epsilon' in training_stats:
+      logger.print_and_log(f"  Final Epsilon: {training_stats['final_epsilon']:.4f}")
+    logger.print_and_log("="*60)
   logger.close()
 
 

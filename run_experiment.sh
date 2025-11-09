@@ -2,6 +2,9 @@
 # Script to run Crafter experiments in parallel with comprehensive data collection
 # Usage: ./run_experiment.sh
 
+# Activate virtual environment
+source .venv/bin/activate
+
 # Configuration
 BASE_LOGDIR="logdir"
 STEPS=1000000

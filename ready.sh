@@ -4,7 +4,7 @@ rm -rf logdir/*
 
 # 2. (Optional) Commit your work
 git add -A
-git commit -m "feat: ready for final experiments"
+git commit -m "feat: add end metadata"
 
 ## 3. Start all experiments
 #chmod +x run_experiment.sh
