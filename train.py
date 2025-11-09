@@ -121,6 +121,7 @@ def evaluate(agent, env, num_episodes=20, device='cpu'):
     done = False
     episode_reward = 0
     episode_length = 0
+    episode_achievements = set()  # Track unique achievements this episode
 
     while not done:
       action = agent.select_action(obs, epsilon=0.0)  # Greedy evaluation
@@ -128,16 +129,20 @@ def evaluate(agent, env, num_episodes=20, device='cpu'):
       episode_reward += reward
       episode_length += 1
 
-      # Track achievements
+      # Track achievements (only once per episode)
       if 'achievements' in info:
         for achievement, unlocked in info['achievements'].items():
           if unlocked:
-            achievements[achievement] = achievements.get(achievement, 0) + 1
+            episode_achievements.add(achievement)
+
+    # Count episodes where each achievement was unlocked
+    for achievement in episode_achievements:
+      achievements[achievement] = achievements.get(achievement, 0) + 1
 
     episode_rewards.append(episode_reward)
     episode_lengths.append(episode_length)
 
-  # Calculate success rates
+  # Calculate success rates (percentage of episodes with achievement)
   achievement_rates = {k: v / num_episodes * 100 for k, v in achievements.items()}
 
   return {

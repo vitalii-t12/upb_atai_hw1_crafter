@@ -194,19 +194,37 @@ def plot_all_results(aggregated, save_dir, smoothing=0.9):
   plt.close()
 
   # 2. Plot training metrics (loss, Q-values)
-  training_metrics = [k for k in aggregated.keys() if k.startswith('train/') and 'episode' not in k]
+  # Only plot key metrics, not achievements
+  training_metrics = [k for k in aggregated.keys()
+                      if k.startswith('train/')
+                      and 'episode' not in k
+                      and 'achievement' not in k]  # Exclude achievement tracking from this plot
 
   if training_metrics:
     n_metrics = len(training_metrics)
-    fig, axes = plt.subplots(1, n_metrics, figsize=(5 * n_metrics, 5))
+    # Limit to max 4 metrics side-by-side, use rows if more
+    if n_metrics <= 4:
+      ncols = n_metrics
+      nrows = 1
+    else:
+      ncols = 4
+      nrows = (n_metrics + 3) // 4
+
+    fig, axes = plt.subplots(nrows, ncols, figsize=(5 * ncols, 5 * nrows))
 
     if n_metrics == 1:
       axes = [axes]
+    else:
+      axes = axes.flatten() if n_metrics > 1 else [axes]
 
     for i, metric_name in enumerate(training_metrics):
       ylabel = metric_name.split('/')[-1].replace('_', ' ').title()
       plot_metric(axes[i], aggregated[metric_name],
                   ylabel, ylabel, smoothing)
+
+    # Hide unused subplots
+    for i in range(n_metrics, len(axes)):
+      axes[i].set_visible(False)
 
     plt.tight_layout()
     plt.savefig(save_dir / 'training_metrics.png', dpi=300, bbox_inches='tight')
