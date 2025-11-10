@@ -68,5 +68,23 @@
     "user": "vi",
     "cwd": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter",
     "python_executable": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter/.venv/bin/python"
+  },
+  "timestamp_end": "2025-11-10T19:01:03.545895",
+  "timestamp_end_unix": 1762801263.545931,
+  "duration": {
+    "seconds": 18553.416083097458,
+    "minutes": 309.22360138495765,
+    "hours": 5.153726689749294,
+    "human_readable": "5h 9m 13s"
+  },
+  "training_stats": {
+    "final_eval_reward_mean": 4.149999999999999,
+    "best_eval_reward": 4.699999999999998,
+    "final_eval_reward_std": 1.4309088021254184,
+    "total_episodes": 5457,
+    "final_loss": 0.053053971379995346,
+    "final_epsilon": 0.050000000000000044,
+    "training_time_seconds": 18500.408000707626,
+    "training_time_formatted": "5h 8m 20s"
   }
 }

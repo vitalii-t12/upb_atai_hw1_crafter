@@ -1,0 +1,106 @@
+======================================================================
+Experiment: training_run
+======================================================================
+
+Start Time: 2025-11-10T19:01:09.849030
+
+Git Info:
+  Commit: c8bde0a (test-1)
+  WARNING: Uncommitted changes present!
+
+System Info:
+  Hostname: dr1-v100s-1
+  Platform: Linux-6.8.0-87-generic-x86_64-with-glibc2.39
+  CPU Count: 15
+
+GPU Info:
+  GPU 0: Tesla V100S-PCIE-32GB
+    Memory: 32768 MiB
+    Driver: 580.95.05
+
+Package Versions:
+  PyTorch: 2.9.0+cu128
+  CUDA: 12.8
+  NumPy: 2.3.4
+  Crafter: unknown
+
+Experiment Arguments:
+  batch_size: 32
+  buffer_size: 100000
+  device: cuda
+  double_dqn: True
+  dueling: True
+  env_name: crafter
+  epsilon_decay_steps: 200000
+  epsilon_end: 0.05
+  epsilon_start: 1.0
+  eval_episodes: 20
+  eval_interval: 50000
+  gamma: 0.99
+  grad_clip: 10.0
+  hidden_size: 512
+  logdir: logdir_extended_exploration/full-enhanced-extended/0
+  lr: 0.0001
+  munchausen: True
+  munchausen_alpha: 0.9
+  munchausen_tau: 0.03
+  n_step: 3
+  resume: None
+  save_freq: 100000
+  seed: 0
+  steps: 1000000
+  target_update_freq: 2500
+  training_starts: 5000
+  update_freq: 4
+======================================================================
+
+Step: 1702/1000000 | Episode: 10 | Epsilon: 0.992 | FPS: 96
+Step: 3286/1000000 | Episode: 20 | Epsilon: 0.984 | FPS: 95
+Step: 5148/1000000 | Episode: 30 | Epsilon: 0.976 | FPS: 85
+Step: 7009/1000000 | Episode: 40 | Epsilon: 0.967 | FPS: 70
+Step: 8805/1000000 | Episode: 50 | Epsilon: 0.958 | FPS: 63
+Step: 10544/1000000 | Episode: 60 | Epsilon: 0.950 | FPS: 64
+Step: 12268/1000000 | Episode: 70 | Epsilon: 0.942 | FPS: 61
+Step: 13935/1000000 | Episode: 80 | Epsilon: 0.934 | FPS: 60
+Step: 15656/1000000 | Episode: 90 | Epsilon: 0.926 | FPS: 61
+Step: 17275/1000000 | Episode: 100 | Epsilon: 0.918 | FPS: 61
+Step: 19070/1000000 | Episode: 110 | Epsilon: 0.909 | FPS: 59
+Step: 20592/1000000 | Episode: 120 | Epsilon: 0.902 | FPS: 57
+Step: 22248/1000000 | Episode: 130 | Epsilon: 0.894 | FPS: 55
+Step: 23798/1000000 | Episode: 140 | Epsilon: 0.887 | FPS: 54
+Step: 25494/1000000 | Episode: 150 | Epsilon: 0.879 | FPS: 54
+Step: 27259/1000000 | Episode: 160 | Epsilon: 0.871 | FPS: 55
+Step: 28888/1000000 | Episode: 170 | Epsilon: 0.863 | FPS: 56
+Step: 30677/1000000 | Episode: 180 | Epsilon: 0.854 | FPS: 55
+Step: 32430/1000000 | Episode: 190 | Epsilon: 0.846 | FPS: 55
+Step: 33907/1000000 | Episode: 200 | Epsilon: 0.839 | FPS: 55
+Step: 35434/1000000 | Episode: 210 | Epsilon: 0.832 | FPS: 55
+Step: 37231/1000000 | Episode: 220 | Epsilon: 0.823 | FPS: 56
+Step: 38720/1000000 | Episode: 230 | Epsilon: 0.816 | FPS: 56
+Step: 40302/1000000 | Episode: 240 | Epsilon: 0.809 | FPS: 56
+Step: 42151/1000000 | Episode: 250 | Epsilon: 0.800 | FPS: 57
+Step: 43935/1000000 | Episode: 260 | Epsilon: 0.791 | FPS: 57
+Step: 45711/1000000 | Episode: 270 | Epsilon: 0.783 | FPS: 57
+Step: 47346/1000000 | Episode: 280 | Epsilon: 0.775 | FPS: 58
+Step: 48878/1000000 | Episode: 290 | Epsilon: 0.768 | FPS: 57
+
+============================================================
+Evaluating at step 50000/1000000 (5.0%)
+Elapsed: 14m 36s | ETA: 4h 37m 32s | Speed: 57.0 steps/s
+Eval - Mean Reward: -0.90 ± 0.00, Mean Length: 173
+Achievements unlocked: 0/22
+============================================================
+
+Step: 50573/1000000 | Episode: 300 | Epsilon: 0.760 | FPS: 54
+Step: 52254/1000000 | Episode: 310 | Epsilon: 0.752 | FPS: 53
+Step: 53996/1000000 | Episode: 320 | Epsilon: 0.744 | FPS: 53
+Step: 55740/1000000 | Episode: 330 | Epsilon: 0.735 | FPS: 52
+Step: 57490/1000000 | Episode: 340 | Epsilon: 0.727 | FPS: 53
+Step: 59137/1000000 | Episode: 350 | Epsilon: 0.719 | FPS: 53
+Step: 60584/1000000 | Episode: 360 | Epsilon: 0.712 | FPS: 53
+Step: 62425/1000000 | Episode: 370 | Epsilon: 0.703 | FPS: 53
+Step: 64207/1000000 | Episode: 380 | Epsilon: 0.695 | FPS: 53
+Step: 65772/1000000 | Episode: 390 | Epsilon: 0.688 | FPS: 53
+Step: 67362/1000000 | Episode: 400 | Epsilon: 0.680 | FPS: 53
+Step: 69158/1000000 | Episode: 410 | Epsilon: 0.671 | FPS: 53
+Step: 70965/1000000 | Episode: 420 | Epsilon: 0.663 | FPS: 53

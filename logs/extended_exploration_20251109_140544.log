@@ -65,3 +65,28 @@ Running SEQUENTIALLY (one seed at a time)
 
   [0;32m▶[0m Running seed 2...
      Logdir: logdir_extended_exploration/enhanced-dqn-extended/2
+  [0;32m✓[0m Seed 2 completed in 5h 9m 20s
+
+
+[0;32m════════════════════════════════════════[0m
+[0;32mExperiment enhanced-dqn-extended COMPLETE![0m
+[0;32mTotal time: 15h 14m 41s[0m
+[0;32m════════════════════════════════════════[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [3/3] Full Enhanced + Extended Epsilon ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+Testing all enhancements with extended exploration:
+  - Double DQN + Dueling + N-step + Munchausen
+  - Extended epsilon exploration
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: full-enhanced-extended[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling --n-step 3 --munchausen --munchausen-alpha 0.9 --munchausen-tau 0.03
+Seeds: 0 1 2
+Running SEQUENTIALLY (one seed at a time)
+
+  [0;32m▶[0m Running seed 0...
+     Logdir: logdir_extended_exploration/full-enhanced-extended/0
