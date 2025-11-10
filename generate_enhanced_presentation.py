@@ -382,9 +382,9 @@ findings_box.line.color.rgb = COLOR_SUCCESS
 tf = findings_box.text_frame
 tf.word_wrap = True
 tf.margin_left = Inches(0.1)
-add_bullet_text(tf, "What This Shows: 4-panel visualization of our best agent", level=0, font_size=13, bold=True, color=COLOR_TITLE)
-add_bullet_text(tf, "Top-left: Reward progression (4.90 ± 0.16, 5.4× better than random) | Top-right: 10/22 achievements unlocked", level=1, font_size=11)
-add_bullet_text(tf, "Bottom-left: Stable Q-values & low loss | Bottom-right: Success rates across all 22 Crafter skills", level=1, font_size=11)
+add_bullet_text(tf, "What This Shows: Performance summary of our best configuration (Enhanced DQN)", level=0, font_size=13, bold=True, color=COLOR_TITLE)
+add_bullet_text(tf, "Top panel: Evaluation reward over training - reaches 4.90 ± 0.16 (5.4× better than random baseline)", level=1, font_size=11)
+add_bullet_text(tf, "Bottom panel: Episode length - shows how many steps agent survives per episode (longer = better survival)", level=1, font_size=11)
 
 # Slide 6: Training Dynamics Comparison
 print("Slide 6: Training Dynamics...")
