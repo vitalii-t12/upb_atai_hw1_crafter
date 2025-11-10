@@ -1,0 +1,90 @@
+{
+  "experiment_name": "training_run",
+  "timestamp_start": "2025-11-10T03:46:29.150926",
+  "timestamp_start_unix": 1762746389.150941,
+  "git": {
+    "commit_hash": "2950c375d39ea42a3acacd6ad323f0d9b41ebca9",
+    "commit_short": "2950c37",
+    "branch": "test-1",
+    "has_uncommitted_changes": true,
+    "uncommitted_files": "?? ASSIGNMENT_ALIGNMENT_CHECK.md\n?? logdir/\n?? logdir_extended_exploration/"
+  },
+  "system": {
+    "hostname": "dr1-v100s-1",
+    "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.39",
+    "system": "Linux",
+    "release": "6.8.0-87-generic",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python_version": "3.12.3",
+    "cpu_count": 15
+  },
+  "gpu": [
+    {
+      "name": "Tesla V100S-PCIE-32GB",
+      "driver_version": "580.95.05",
+      "memory_total": "32768 MiB"
+    }
+  ],
+  "packages": {
+    "torch": "2.9.0+cu128",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "cudnn_version": 91002,
+    "numpy": "2.3.4",
+    "crafter": "unknown",
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]"
+  },
+  "arguments": {
+    "env_name": "crafter",
+    "steps": 1000000,
+    "eval_interval": 50000,
+    "eval_episodes": 20,
+    "seed": 0,
+    "logdir": "logdir_extended_exploration/enhanced-dqn-extended/0",
+    "device": "cuda",
+    "lr": 0.0001,
+    "batch_size": 32,
+    "buffer_size": 100000,
+    "gamma": 0.99,
+    "target_update_freq": 2500,
+    "training_starts": 5000,
+    "update_freq": 4,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.05,
+    "epsilon_decay_steps": 200000,
+    "double_dqn": true,
+    "dueling": true,
+    "n_step": 1,
+    "munchausen": false,
+    "munchausen_alpha": 0.9,
+    "munchausen_tau": 0.03,
+    "hidden_size": 512,
+    "grad_clip": 10.0,
+    "save_freq": 100000,
+    "resume": null
+  },
+  "environment": {
+    "user": "vi",
+    "cwd": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter",
+    "python_executable": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter/.venv/bin/python"
+  },
+  "timestamp_end": "2025-11-10T08:42:39.509029",
+  "timestamp_end_unix": 1762764159.509056,
+  "duration": {
+    "seconds": 17770.358115196228,
+    "minutes": 296.17263525327047,
+    "hours": 4.936210587554508,
+    "human_readable": "4h 56m 10s"
+  },
+  "training_stats": {
+    "final_eval_reward_mean": 4.549999999999999,
+    "best_eval_reward": 4.649999999999999,
+    "final_eval_reward_std": 1.2031209415515962,
+    "total_episodes": 5442,
+    "final_loss": 0.011114008724689484,
+    "final_epsilon": 0.050000000000000044,
+    "training_time_seconds": 17715.867438793182,
+    "training_time_formatted": "4h 55m 15s"
+  }
+}

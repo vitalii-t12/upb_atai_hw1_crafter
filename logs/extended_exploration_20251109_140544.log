@@ -1,0 +1,67 @@
+[0;32m========================================[0m
+[0;32mExtended Epsilon Exploration Experiments[0m
+[0;32m========================================[0m
+[0;34mStart time: Sun Nov  9 14:05:44 UTC 2025[0m
+[0;34mLogdir: logdir_extended_exploration[0m
+[0;34mTotal steps per run: 1000000[0m
+[0;34mEval interval: 50000[0m
+[0;34mEpsilon decay steps: 200000[0m
+[0;34mEpsilon end: 0.05[0m
+[0;34mMode: ONE SEED AT A TIME (memory safe)[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [1/3] Base DQN + Extended Epsilon      ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+Testing vanilla DQN with:
+  - Epsilon decay over 200K steps (vs 50K default)
+  - Minimum epsilon 0.05 (vs 0.01 default)
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: base-dqn-extended[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: 
+Seeds: 0 1 2
+Running SEQUENTIALLY (one seed at a time)
+
+  [0;32m▶[0m Running seed 0...
+     Logdir: logdir_extended_exploration/base-dqn-extended/0
+  [0;32m✓[0m Seed 0 completed in 4h 26m 7s
+
+  [0;32m▶[0m Running seed 1...
+     Logdir: logdir_extended_exploration/base-dqn-extended/1
+  [0;32m✓[0m Seed 1 completed in 4h 36m 23s
+
+  [0;32m▶[0m Running seed 2...
+     Logdir: logdir_extended_exploration/base-dqn-extended/2
+  [0;32m✓[0m Seed 2 completed in 4h 38m 12s
+
+
+[0;32m════════════════════════════════════════[0m
+[0;32mExperiment base-dqn-extended COMPLETE![0m
+[0;32mTotal time: 13h 40m 42s[0m
+[0;32m════════════════════════════════════════[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [2/3] Enhanced DQN + Extended Epsilon  ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+Testing Double DQN + Dueling with extended exploration
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: enhanced-dqn-extended[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling
+Seeds: 0 1 2
+Running SEQUENTIALLY (one seed at a time)
+
+  [0;32m▶[0m Running seed 0...
+     Logdir: logdir_extended_exploration/enhanced-dqn-extended/0
+  [0;32m✓[0m Seed 0 completed in 4h 56m 16s
+
+  [0;32m▶[0m Running seed 1...
+     Logdir: logdir_extended_exploration/enhanced-dqn-extended/1
+  [0;32m✓[0m Seed 1 completed in 5h 9m 5s
+
+  [0;32m▶[0m Running seed 2...
+     Logdir: logdir_extended_exploration/enhanced-dqn-extended/2

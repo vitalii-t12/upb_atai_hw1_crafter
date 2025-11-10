@@ -1,0 +1,303 @@
+[0;32m======================================[0m
+[0;32mCrafter Agent Training Experiments[0m
+[0;32m(SAFE MODE - 3 seeds parallel)[0m
+[0;32m======================================[0m
+[0;34mStart time: Sun Nov  9 12:39:44 UTC 2025[0m
+[0;34mLogdir: logdir[0m
+[0;34mTotal steps per run: 1000000[0m
+[0;34mEval interval: 50000[0m
+[0;34mMax parallel processes: 3[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [1/6] Random Baseline                   ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+  [0;32m▶[0m Launching random agent seed 0
+     Logdir: logdir/random-baseline/0
+     PID: 6401
+
+  [0;32m▶[0m Launching random agent seed 1
+     Logdir: logdir/random-baseline/1
+     PID: 6428
+
+  [0;32m▶[0m Launching random agent seed 2
+     Logdir: logdir/random-baseline/2
+     PID: 6486
+
+[0;34mWaiting for random baseline to complete...[0m
+[0;32m✓ Random baseline complete![0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [2/6] Vanilla DQN                       ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: base-dqn[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: 
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/base-dqn/0
+     PID: 12386
+
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/base-dqn/1
+     PID: 12406
+
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/base-dqn/2
+     PID: 12463
+
+[0;34mAll 3 seeds launched. Waiting for completion...[0m
+[0;34mMonitor progress: tail -f logdir/base-dqn/0.log[0m
+[0;34mCheck GPU usage: watch -n 1 nvidia-smi[0m
+
+[0;32m✓[0m Seed completed (1/3)
+[0;32m✓[0m Seed completed (2/3)
+[0;32m✓[0m Seed completed (3/3)
+
+[0;32m════════════════════════════════════════[0m
+[0;32mExperiment base-dqn COMPLETE![0m
+[0;32mTotal time: 4h 33m 3s[0m
+[0;32m════════════════════════════════════════[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [3/6] Enhanced DQN                      ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: enhanced-dqn[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/enhanced-dqn/0
+     PID: 42857
+
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/enhanced-dqn/1
+     PID: 42880
+
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/enhanced-dqn/2
+     PID: 42920
+
+[0;34mAll 3 seeds launched. Waiting for completion...[0m
+[0;34mMonitor progress: tail -f logdir/enhanced-dqn/0.log[0m
+[0;34mCheck GPU usage: watch -n 1 nvidia-smi[0m
+
+[0;32m✓[0m Seed completed (1/3)
+[0;32m✓[0m Seed completed (2/3)
+[0;32m✓[0m Seed completed (3/3)
+
+[0;32m════════════════════════════════════════[0m
+[0;32mExperiment enhanced-dqn COMPLETE![0m
+[0;32mTotal time: 4h 53m 24s[0m
+[0;32m════════════════════════════════════════[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [4/6] DQN + N-step (n=3)                ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: dqn-nstep3[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling --n-step 3
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/dqn-nstep3/0
+     PID: 61907
+
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/dqn-nstep3/1
+     PID: 61924
+
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/dqn-nstep3/2
+     PID: 61966
+
+[0;34mAll 3 seeds launched. Waiting for completion...[0m
+[0;34mMonitor progress: tail -f logdir/dqn-nstep3/0.log[0m
+[0;34mCheck GPU usage: watch -n 1 nvidia-smi[0m
+
+[0;32m✓[0m Seed completed (1/3)
+[0;32m✓[0m Seed completed (2/3)
+[0;32m✓[0m Seed completed (3/3)
+
+[0;32m════════════════════════════════════════[0m
+[0;32mExperiment dqn-nstep3 COMPLETE![0m
+[0;32mTotal time: 4h 58m 26s[0m
+[0;32m════════════════════════════════════════[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [5/6] DQN + N-step (n=5)                ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: dqn-nstep5[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling --n-step 5
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/dqn-nstep5/0
+     PID: 95596
+
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/dqn-nstep5/1
+     PID: 95613
+
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/dqn-nstep5/2
+     PID: 95652
+
+[0;34mAll 3 seeds launched. Waiting for completion...[0m
+[0;34mMonitor progress: tail -f logdir/dqn-nstep5/0.log[0m
+[0;34mCheck GPU usage: watch -n 1 nvidia-smi[0m
+
+[0;32m✓[0m Seed completed (1/3)
+[0;32m✓[0m Seed completed (2/3)
+[0;32m✓[0m Seed completed (3/3)
+
+[0;32m════════════════════════════════════════[0m
+[0;32mExperiment dqn-nstep5 COMPLETE![0m
+[0;32mTotal time: 5h 1m 33s[0m
+[0;32m════════════════════════════════════════[0m
+
+[0;34m╔════════════════════════════════════════╗[0m
+[0;34m║ [6/6] Full Enhanced DQN                 ║[0m
+[0;34m╚════════════════════════════════════════╝[0m
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: full-enhanced[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling --n-step 3 --munchausen --munchausen-alpha 0.9 --munchausen-tau 0.03
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/full-enhanced/0
+     PID: 113572
+
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/full-enhanced/1
+     PID: 113589
+
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/full-enhanced/2
+     PID: 113633
+
+[0;34mAll 3 seeds launched. Waiting for completion...[0m
+[0;34mMonitor progress: tail -f logdir/full-enhanced/0.log[0m
+[0;34mCheck GPU usage: watch -n 1 nvidia-smi[0m
+
+[0;32m✓[0m Seed completed (1/3)
+[0;32m✓[0m Seed completed (2/3)
+[0;32m✓[0m Seed completed (3/3)
+
+[0;32m════════════════════════════════════════[0m
+[0;32mExperiment full-enhanced COMPLETE![0m
+[0;32mTotal time: 5h 22m 19s[0m
+[0;32m════════════════════════════════════════[0m
+
+
+[0;32m════════════════════════════════════════════════[0m
+[0;32mALL TRAINING COMPLETE![0m
+[0;32mTotal time: 25h 12m 39s[0m
+[0;32m════════════════════════════════════════════════[0m
+
+[0;34mStarting data collection and analysis...[0m
+
+[0;34mGenerating plots and analysis...[0m
+
+[1;33m1. Generating individual experiment plots...[0m
+  Plotting base-dqn...
+  Plotting enhanced-dqn...
+  Plotting dqn-nstep3...
+  Plotting dqn-nstep5...
+  Plotting full-enhanced...
+  Plotting random-baseline...
+
+[1;33m2. Generating comparison table...[0m
+
+[1;33m3. Creating summary report...[0m
+# Crafter Experiment Results Summary
+
+**Run Date:** Mon Nov 10 14:00:06 UTC 2025
+**Total Training Time:** 25h 12m 39s
+**Total Training Steps:** 1000000 per agent
+**Evaluation Frequency:** Every 50000 steps
+**Seeds per Experiment:** 3 (0, 1, 2)
+**Execution Mode:** Safe parallel (3 seeds at a time, one experiment at a time)
+
+## Experiments Run
+
+1. **random-baseline** - Random agent (no learning) for comparison
+2. **base-dqn** - Standard DQN with target network
+3. **enhanced-dqn** - DQN with Double DQN and Dueling
+4. **dqn-nstep3** - Enhanced DQN with 3-step returns
+5. **dqn-nstep5** - Enhanced DQN with 5-step returns
+6. **full-enhanced** - All enhancements including Munchausen-DQN
+
+## Files Generated
+
+- Individual plots: `logdir/<experiment>/plots/`
+  - `rewards.png` - Training and evaluation rewards
+  - `training_metrics.png` - Loss and Q-values
+  - `achievement_spectrum.png` - Achievement success rates
+  - `summary.png` - Comprehensive overview
+
+- Comparison: `logdir/results_20251109_123944/comparison_table.txt`
+
+- Raw metrics: `logdir/<experiment>/<seed>/metrics.json`
+
+- Metadata: `logdir/<experiment>/<seed>/metadata.json`
+
+- Training logs: `logdir/<experiment>/<seed>/log.txt`
+
+## Quick Analysis
+
+To view comparison table:
+```bash
+cat logdir/results_20251109_123944/comparison_table.txt
+```
+
+To view individual experiment results:
+```bash
+ls logdir/*/plots/
+```
+
+## Assignment Deliverables Checklist
+
+- [ ] Source code archive (without checkpoints)
+- [ ] Slide deck PDF with:
+  - [ ] Algorithm description
+  - [ ] Performance plots (eval/mean_reward)
+  - [ ] Loss and Q-value plots
+  - [ ] Comparison with random baseline
+  - [ ] Average of 2-3 training runs
+  - [ ] Achievement spectrum (bonus)
+
+## Next Steps
+
+1. Review plots in each experiment's `plots/` directory
+2. Check comparison table for best performing agent
+3. Select best agent for presentation
+4. Create slide deck using generated plots
+5. Archive source code: `tar -czf submission.tar.gz *.py analysis/ src/ --exclude=logdir/`
+
+
+[0;32m════════════════════════════════════════════════[0m
+[0;32mDATA COLLECTION COMPLETE![0m
+[0;32m════════════════════════════════════════════════[0m
+
+[0;34mResults saved to:[0m logdir/results_20251109_123944
+
+[0;34mQuick links:[0m
+  Summary:     cat logdir/results_20251109_123944/SUMMARY.md
+  Comparison:  cat logdir/results_20251109_123944/comparison_table.txt
+  Plots:       ls logdir/*/plots/
+
+[0;32mAll done! Ready for assignment submission.[0m

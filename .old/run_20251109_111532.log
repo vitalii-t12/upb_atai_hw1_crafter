@@ -1,0 +1,158 @@
+[0;32m======================================[0m
+[0;32mCrafter Agent Training Experiments[0m
+[0;32m======================================[0m
+[0;34mStart time: Sun Nov  9 11:15:33 UTC 2025[0m
+[0;34mLogdir: logdir[0m
+[0;34mTotal steps per run: 1000000[0m
+[0;34mEval interval: 50000[0m
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment 1: Random Baseline[0m
+[1;33m═══════════════════════════════════════[0m
+Random agent for comparison - Quick runs (100K steps)
+
+  [0;32m▶[0m Launching random agent seed 0
+     Logdir: logdir/random-baseline/0
+     PID: 40649
+  [0;32m▶[0m Launching random agent seed 1
+     Logdir: logdir/random-baseline/1
+     PID: 40966
+  [0;32m▶[0m Launching random agent seed 2
+     Logdir: logdir/random-baseline/2
+     PID: 41013
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment 2: Vanilla DQN[0m
+[1;33m═══════════════════════════════════════[0m
+Standard DQN with target network, no enhancements
+Config: 1-step TD, no Double DQN, no Dueling
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: base-dqn[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: 
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/base-dqn/0
+     PID: 41057
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/base-dqn/1
+     PID: 41109
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/base-dqn/2
+     PID: 41160
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment 3: Enhanced DQN[0m
+[1;33m═══════════════════════════════════════[0m
+DQN with Double DQN and Dueling architecture
+Config: 1-step TD, Double DQN, Dueling
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: enhanced-dqn[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/enhanced-dqn/0
+     PID: 41258
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/enhanced-dqn/1
+     PID: 41280
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/enhanced-dqn/2
+     PID: 41365
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment 4: DQN + N-step (n=3)[0m
+[1;33m═══════════════════════════════════════[0m
+Enhanced DQN with 3-step returns
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: dqn-nstep3[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling --n-step 3
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/dqn-nstep3/0
+     PID: 41426
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/dqn-nstep3/1
+     PID: 41495
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/dqn-nstep3/2
+     PID: 41514
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment 5: DQN + N-step (n=5)[0m
+[1;33m═══════════════════════════════════════[0m
+Enhanced DQN with 5-step returns
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: dqn-nstep5[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling --n-step 5
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/dqn-nstep5/0
+     PID: 41633
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/dqn-nstep5/1
+     PID: 41657
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/dqn-nstep5/2
+     PID: 41717
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment 6: Full Enhanced DQN[0m
+[1;33m═══════════════════════════════════════[0m
+All enhancements: Double + Dueling + N-step + Munchausen
+
+[1;33m═══════════════════════════════════════[0m
+[1;33mExperiment: full-enhanced[0m
+[1;33m═══════════════════════════════════════[0m
+Arguments: --double-dqn --dueling --n-step 3 --munchausen --munchausen-alpha 0.9 --munchausen-tau 0.03
+Seeds: 0 1 2
+
+  [0;32m▶[0m Launching seed 0
+     Logdir: logdir/full-enhanced/0
+     PID: 41930
+  [0;32m▶[0m Launching seed 1
+     Logdir: logdir/full-enhanced/1
+     PID: 41966
+  [0;32m▶[0m Launching seed 2
+     Logdir: logdir/full-enhanced/2
+     PID: 42015
+
+
+[0;32m════════════════════════════════════════════════[0m
+[0;32mAll experiments launched![0m
+[0;32m════════════════════════════════════════════════[0m
+
+[0;34mMonitoring Commands:[0m
+  Monitor all experiments:   tail -f logdir/*/0.log
+  Monitor specific:          tail -f logdir/full-enhanced/0.log
+  Check all PIDs:            ps aux | grep train.py
+  GPU usage:                 watch -n 1 nvidia-smi
+
+[0;34mRunning experiments:[0m
+  random-baseline: 3 processes
+  base-dqn: 3 processes
+  enhanced-dqn: 3 processes
+  dqn-nstep3: 3 processes
+  dqn-nstep5: 3 processes
+  full-enhanced: 3 processes
+
+[1;33mWaiting for all experiments to complete...[0m
+[1;33mThis will take several hours. Press Ctrl+C to stop.[0m
+
+./run_experiment.sh: line 242: 40649 Killed                  python train.py --steps 100000 --eval-interval 25000 --eval-episodes $EVAL_EPISODES --logdir $logdir --seed $seed --training-starts 1000000 > "${exp_dir}/${seed}.log" 2>&1
+./run_experiment.sh: line 242: 41057 Killed                  python train.py --steps $STEPS --eval-interval $EVAL_INTERVAL --eval-episodes $EVAL_EPISODES --logdir $logdir --seed $seed $args > "${exp_dir}/${seed}.log" 2>&1
+./run_experiment.sh: line 242: 41280 Killed                  python train.py --steps $STEPS --eval-interval $EVAL_INTERVAL --eval-episodes $EVAL_EPISODES --logdir $logdir --seed $seed $args > "${exp_dir}/${seed}.log" 2>&1
+./run_experiment.sh: line 242: 40966 Killed                  python train.py --steps 100000 --eval-interval 25000 --eval-episodes $EVAL_EPISODES --logdir $logdir --seed $seed --training-starts 1000000 > "${exp_dir}/${seed}.log" 2>&1
+./run_experiment.sh: line 242: 41013 Killed                  python train.py --steps 100000 --eval-interval 25000 --eval-episodes $EVAL_EPISODES --logdir $logdir --seed $seed --training-starts 1000000 > "${exp_dir}/${seed}.log" 2>&1
+./run_experiment.sh: line 242: 41109 Killed                  python train.py --steps $STEPS --eval-interval $EVAL_INTERVAL --eval-episodes $EVAL_EPISODES --logdir $logdir --seed $seed $args > "${exp_dir}/${seed}.log" 2>&1

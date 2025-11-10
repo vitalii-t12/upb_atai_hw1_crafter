@@ -1,0 +1,171 @@
+======================================================================
+Experiment: training_run
+======================================================================
+
+Start Time: 2025-11-09T12:39:49.253733
+
+Git Info:
+  Commit: 507a1d0 (test-1)
+  WARNING: Uncommitted changes present!
+
+System Info:
+  Hostname: dr1-v100s-1
+  Platform: Linux-6.8.0-87-generic-x86_64-with-glibc2.39
+  CPU Count: 15
+
+GPU Info:
+  GPU 0: Tesla V100S-PCIE-32GB
+    Memory: 32768 MiB
+    Driver: 580.95.05
+
+Package Versions:
+  PyTorch: 2.9.0+cu128
+  CUDA: 12.8
+  NumPy: 2.3.4
+  Crafter: unknown
+
+Experiment Arguments:
+  batch_size: 32
+  buffer_size: 100000
+  device: cuda
+  double_dqn: False
+  dueling: False
+  env_name: crafter
+  epsilon_decay_steps: 50000
+  epsilon_end: 0.01
+  epsilon_start: 1.0
+  eval_episodes: 20
+  eval_interval: 25000
+  gamma: 0.99
+  grad_clip: 10.0
+  hidden_size: 512
+  logdir: logdir/random-baseline/1
+  lr: 0.0001
+  munchausen: False
+  munchausen_alpha: 0.9
+  munchausen_tau: 0.03
+  n_step: 1
+  resume: None
+  save_freq: 100000
+  seed: 1
+  steps: 100000
+  target_update_freq: 2500
+  training_starts: 1000000
+  update_freq: 4
+======================================================================
+
+Step: 1775/100000 | Episode: 10 | Epsilon: 0.965 | FPS: 92
+Step: 3387/100000 | Episode: 20 | Epsilon: 0.933 | FPS: 91
+Step: 4789/100000 | Episode: 30 | Epsilon: 0.905 | FPS: 86
+Step: 6336/100000 | Episode: 40 | Epsilon: 0.875 | FPS: 86
+Step: 7982/100000 | Episode: 50 | Epsilon: 0.842 | FPS: 88
+Step: 9693/100000 | Episode: 60 | Epsilon: 0.808 | FPS: 88
+Step: 11342/100000 | Episode: 70 | Epsilon: 0.775 | FPS: 88
+Step: 12897/100000 | Episode: 80 | Epsilon: 0.745 | FPS: 87
+Step: 14627/100000 | Episode: 90 | Epsilon: 0.710 | FPS: 87
+Step: 16185/100000 | Episode: 100 | Epsilon: 0.680 | FPS: 86
+Step: 18002/100000 | Episode: 110 | Epsilon: 0.644 | FPS: 86
+Step: 19662/100000 | Episode: 120 | Epsilon: 0.611 | FPS: 85
+Step: 21303/100000 | Episode: 130 | Epsilon: 0.578 | FPS: 84
+Step: 22616/100000 | Episode: 140 | Epsilon: 0.552 | FPS: 83
+Step: 24444/100000 | Episode: 150 | Epsilon: 0.516 | FPS: 84
+
+============================================================
+Evaluating at step 25000/100000 (25.0%)
+Elapsed: 4m 56s | ETA: 14m 49s | Speed: 84.3 steps/s
+Eval - Mean Reward: -0.90 ± 0.00, Mean Length: 171
+Achievements unlocked: 0/22
+============================================================
+
+Step: 25923/100000 | Episode: 160 | Epsilon: 0.487 | FPS: 74
+Step: 27634/100000 | Episode: 170 | Epsilon: 0.453 | FPS: 75
+Step: 29456/100000 | Episode: 180 | Epsilon: 0.417 | FPS: 76
+Step: 31223/100000 | Episode: 190 | Epsilon: 0.382 | FPS: 76
+Step: 32990/100000 | Episode: 200 | Epsilon: 0.347 | FPS: 77
+Step: 34752/100000 | Episode: 210 | Epsilon: 0.312 | FPS: 78
+Step: 36702/100000 | Episode: 220 | Epsilon: 0.273 | FPS: 79
+Step: 38406/100000 | Episode: 230 | Epsilon: 0.240 | FPS: 79
+Step: 40386/100000 | Episode: 240 | Epsilon: 0.200 | FPS: 80
+Step: 41859/100000 | Episode: 250 | Epsilon: 0.171 | FPS: 80
+Step: 43463/100000 | Episode: 260 | Epsilon: 0.139 | FPS: 80
+Step: 44932/100000 | Episode: 270 | Epsilon: 0.110 | FPS: 80
+Step: 46549/100000 | Episode: 280 | Epsilon: 0.078 | FPS: 80
+Step: 48441/100000 | Episode: 290 | Epsilon: 0.041 | FPS: 80
+
+============================================================
+Evaluating at step 50000/100000 (50.0%)
+Elapsed: 10m 21s | ETA: 10m 21s | Speed: 80.4 steps/s
+Eval - Mean Reward: -0.90 ± 0.00, Mean Length: 171
+Achievements unlocked: 0/22
+============================================================
+
+Step: 50269/100000 | Episode: 300 | Epsilon: 0.010 | FPS: 76
+Step: 52133/100000 | Episode: 310 | Epsilon: 0.010 | FPS: 76
+Step: 53665/100000 | Episode: 320 | Epsilon: 0.010 | FPS: 76
+Step: 55380/100000 | Episode: 330 | Epsilon: 0.010 | FPS: 76
+Step: 57141/100000 | Episode: 340 | Epsilon: 0.010 | FPS: 77
+Step: 58884/100000 | Episode: 350 | Epsilon: 0.010 | FPS: 77
+Step: 60730/100000 | Episode: 360 | Epsilon: 0.010 | FPS: 77
+Step: 62357/100000 | Episode: 370 | Epsilon: 0.010 | FPS: 78
+Step: 64094/100000 | Episode: 380 | Epsilon: 0.010 | FPS: 78
+Step: 65872/100000 | Episode: 390 | Epsilon: 0.010 | FPS: 78
+Step: 67346/100000 | Episode: 400 | Epsilon: 0.010 | FPS: 78
+Step: 69068/100000 | Episode: 410 | Epsilon: 0.010 | FPS: 78
+Step: 70623/100000 | Episode: 420 | Epsilon: 0.010 | FPS: 78
+Step: 72275/100000 | Episode: 430 | Epsilon: 0.010 | FPS: 78
+Step: 73978/100000 | Episode: 440 | Epsilon: 0.010 | FPS: 78
+
+============================================================
+Evaluating at step 75000/100000 (75.0%)
+Elapsed: 15m 53s | ETA: 5m 17s | Speed: 78.6 steps/s
+Eval - Mean Reward: -0.90 ± 0.00, Mean Length: 192
+Achievements unlocked: 0/22
+============================================================
+
+Step: 75725/100000 | Episode: 450 | Epsilon: 0.010 | FPS: 75
+Step: 77629/100000 | Episode: 460 | Epsilon: 0.010 | FPS: 76
+Step: 79332/100000 | Episode: 470 | Epsilon: 0.010 | FPS: 76
+Step: 81170/100000 | Episode: 480 | Epsilon: 0.010 | FPS: 76
+Step: 82595/100000 | Episode: 490 | Epsilon: 0.010 | FPS: 76
+Step: 84164/100000 | Episode: 500 | Epsilon: 0.010 | FPS: 76
+Step: 85596/100000 | Episode: 510 | Epsilon: 0.010 | FPS: 76
+Step: 87485/100000 | Episode: 520 | Epsilon: 0.010 | FPS: 76
+Step: 89184/100000 | Episode: 530 | Epsilon: 0.010 | FPS: 77
+Step: 90848/100000 | Episode: 540 | Epsilon: 0.010 | FPS: 77
+Step: 92834/100000 | Episode: 550 | Epsilon: 0.010 | FPS: 77
+Step: 94550/100000 | Episode: 560 | Epsilon: 0.010 | FPS: 77
+Step: 96144/100000 | Episode: 570 | Epsilon: 0.010 | FPS: 77
+Step: 98197/100000 | Episode: 580 | Epsilon: 0.010 | FPS: 77
+Step: 99741/100000 | Episode: 590 | Epsilon: 0.010 | FPS: 78
+
+============================================================
+Evaluating at step 100000/100000 (100.0%)
+Elapsed: 21m 30s | ETA: 0s | Speed: 77.5 steps/s
+Eval - Mean Reward: -0.90 ± 0.00, Mean Length: 151
+Achievements unlocked: 0/22
+============================================================
+
+[CHECKPOINT] Saved to logdir/random-baseline/1/checkpoint_100000.pt
+[CHECKPOINT] Total elapsed: 22m 9s | Since last checkpoint: 22m 9s
+
+============================================================
+FINAL EVALUATION
+Total training time: 22m 9s
+============================================================
+Final Mean Reward: -0.90 ± 0.00
+Final Achievements: 0/22
+
+Saved final model to logdir/random-baseline/1/final_model.pt
+Metrics saved to logdir/random-baseline/1/metrics.json
+Metadata saved to logdir/random-baseline/1/metadata.json
+============================================================
+TRAINING COMPLETE!
+============================================================
+
+Final Training Statistics:
+  Training Time: 22m 9s
+  Final Eval Reward: -0.90 ± 0.00
+  Best Eval Reward: -0.90
+  Total Episodes: 592
+  Final Epsilon: 0.0100
+============================================================

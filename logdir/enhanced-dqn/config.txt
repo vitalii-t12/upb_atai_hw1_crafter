@@ -1,0 +1,7 @@
+Experiment: enhanced-dqn
+Timestamp: 20251109_123944
+Steps: 1000000
+Eval Interval: 50000
+Eval Episodes: 20
+Seeds: 0 1 2
+Arguments: --double-dqn --dueling

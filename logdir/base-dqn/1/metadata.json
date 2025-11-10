@@ -1,0 +1,90 @@
+{
+  "experiment_name": "training_run",
+  "timestamp_start": "2025-11-09T13:03:42.653100",
+  "timestamp_start_unix": 1762693422.653132,
+  "git": {
+    "commit_hash": "507a1d029e50fa04c8fdebc7d7f50c3a8d20278f",
+    "commit_short": "507a1d0",
+    "branch": "test-1",
+    "has_uncommitted_changes": true,
+    "uncommitted_files": "?? logdir/"
+  },
+  "system": {
+    "hostname": "dr1-v100s-1",
+    "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.39",
+    "system": "Linux",
+    "release": "6.8.0-87-generic",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python_version": "3.12.3",
+    "cpu_count": 15
+  },
+  "gpu": [
+    {
+      "name": "Tesla V100S-PCIE-32GB",
+      "driver_version": "580.95.05",
+      "memory_total": "32768 MiB"
+    }
+  ],
+  "packages": {
+    "torch": "2.9.0+cu128",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "cudnn_version": 91002,
+    "numpy": "2.3.4",
+    "crafter": "unknown",
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]"
+  },
+  "arguments": {
+    "env_name": "crafter",
+    "steps": 1000000,
+    "eval_interval": 50000,
+    "eval_episodes": 20,
+    "seed": 1,
+    "logdir": "logdir/base-dqn/1",
+    "device": "cuda",
+    "lr": 0.0001,
+    "batch_size": 32,
+    "buffer_size": 100000,
+    "gamma": 0.99,
+    "target_update_freq": 2500,
+    "training_starts": 5000,
+    "update_freq": 4,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.01,
+    "epsilon_decay_steps": 50000,
+    "double_dqn": false,
+    "dueling": false,
+    "n_step": 1,
+    "munchausen": false,
+    "munchausen_alpha": 0.9,
+    "munchausen_tau": 0.03,
+    "hidden_size": 512,
+    "grad_clip": 10.0,
+    "save_freq": 100000,
+    "resume": null
+  },
+  "environment": {
+    "user": "vi",
+    "cwd": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter",
+    "python_executable": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter/.venv/bin/python"
+  },
+  "timestamp_end": "2025-11-09T17:32:55.095086",
+  "timestamp_end_unix": 1762709575.095099,
+  "duration": {
+    "seconds": 16152.441967010498,
+    "minutes": 269.2073661168416,
+    "hours": 4.486789435280694,
+    "human_readable": "4h 29m 12s"
+  },
+  "training_stats": {
+    "final_eval_reward_mean": 4.149999999999999,
+    "best_eval_reward": 4.799999999999999,
+    "final_eval_reward_std": 1.4991664350564948,
+    "total_episodes": 5246,
+    "final_loss": 0.02481500618159771,
+    "final_epsilon": 0.010000000000000009,
+    "training_time_seconds": 16102.984922170639,
+    "training_time_formatted": "4h 28m 22s"
+  }
+}

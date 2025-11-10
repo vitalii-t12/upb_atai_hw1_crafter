@@ -1,0 +1,804 @@
+======================================================================
+Experiment: training_run
+======================================================================
+
+Start Time: 2025-11-09T23:08:16.869077
+
+Git Info:
+  Commit: 2950c37 (test-1)
+  WARNING: Uncommitted changes present!
+
+System Info:
+  Hostname: dr1-v100s-1
+  Platform: Linux-6.8.0-87-generic-x86_64-with-glibc2.39
+  CPU Count: 15
+
+GPU Info:
+  GPU 0: Tesla V100S-PCIE-32GB
+    Memory: 32768 MiB
+    Driver: 580.95.05
+
+Package Versions:
+  PyTorch: 2.9.0+cu128
+  CUDA: 12.8
+  NumPy: 2.3.4
+  Crafter: unknown
+
+Experiment Arguments:
+  batch_size: 32
+  buffer_size: 100000
+  device: cuda
+  double_dqn: False
+  dueling: False
+  env_name: crafter
+  epsilon_decay_steps: 200000
+  epsilon_end: 0.05
+  epsilon_start: 1.0
+  eval_episodes: 20
+  eval_interval: 50000
+  gamma: 0.99
+  grad_clip: 10.0
+  hidden_size: 512
+  logdir: logdir_extended_exploration/base-dqn-extended/2
+  lr: 0.0001
+  munchausen: False
+  munchausen_alpha: 0.9
+  munchausen_tau: 0.03
+  n_step: 1
+  resume: None
+  save_freq: 100000
+  seed: 2
+  steps: 1000000
+  target_update_freq: 2500
+  training_starts: 5000
+  update_freq: 4
+======================================================================
+
+Step: 1511/1000000 | Episode: 10 | Epsilon: 0.993 | FPS: 80
+Step: 3115/1000000 | Episode: 20 | Epsilon: 0.985 | FPS: 84
+Step: 4731/1000000 | Episode: 30 | Epsilon: 0.978 | FPS: 83
+Step: 6456/1000000 | Episode: 40 | Epsilon: 0.969 | FPS: 78
+Step: 8145/1000000 | Episode: 50 | Epsilon: 0.961 | FPS: 72
+Step: 9615/1000000 | Episode: 60 | Epsilon: 0.954 | FPS: 70
+Step: 11245/1000000 | Episode: 70 | Epsilon: 0.947 | FPS: 70
+Step: 12957/1000000 | Episode: 80 | Epsilon: 0.938 | FPS: 66
+Step: 14689/1000000 | Episode: 90 | Epsilon: 0.930 | FPS: 67
+Step: 16340/1000000 | Episode: 100 | Epsilon: 0.922 | FPS: 66
+Step: 17968/1000000 | Episode: 110 | Epsilon: 0.915 | FPS: 66
+Step: 19579/1000000 | Episode: 120 | Epsilon: 0.907 | FPS: 65
+Step: 21390/1000000 | Episode: 130 | Epsilon: 0.898 | FPS: 66
+Step: 23102/1000000 | Episode: 140 | Epsilon: 0.890 | FPS: 66
+Step: 24846/1000000 | Episode: 150 | Epsilon: 0.882 | FPS: 65
+Step: 26587/1000000 | Episode: 160 | Epsilon: 0.874 | FPS: 66
+Step: 28442/1000000 | Episode: 170 | Epsilon: 0.865 | FPS: 66
+Step: 30336/1000000 | Episode: 180 | Epsilon: 0.856 | FPS: 67
+Step: 32048/1000000 | Episode: 190 | Epsilon: 0.848 | FPS: 67
+Step: 33764/1000000 | Episode: 200 | Epsilon: 0.840 | FPS: 67
+Step: 35639/1000000 | Episode: 210 | Epsilon: 0.831 | FPS: 67
+Step: 37251/1000000 | Episode: 220 | Epsilon: 0.823 | FPS: 67
+Step: 39156/1000000 | Episode: 230 | Epsilon: 0.814 | FPS: 67
+Step: 40830/1000000 | Episode: 240 | Epsilon: 0.806 | FPS: 67
+Step: 42770/1000000 | Episode: 250 | Epsilon: 0.797 | FPS: 67
+Step: 44513/1000000 | Episode: 260 | Epsilon: 0.789 | FPS: 67
+Step: 46325/1000000 | Episode: 270 | Epsilon: 0.780 | FPS: 67
+Step: 48254/1000000 | Episode: 280 | Epsilon: 0.771 | FPS: 67
+
+============================================================
+Evaluating at step 50000/1000000 (5.0%)
+Elapsed: 12m 19s | ETA: 3h 54m 15s | Speed: 67.6 steps/s
+Eval - Mean Reward: 1.95 ± 0.96, Mean Length: 169
+Achievements unlocked: 6/22
+============================================================
+
+Step: 50210/1000000 | Episode: 290 | Epsilon: 0.762 | FPS: 64
+Step: 51886/1000000 | Episode: 300 | Epsilon: 0.754 | FPS: 63
+Step: 53678/1000000 | Episode: 310 | Epsilon: 0.745 | FPS: 64
+Step: 55417/1000000 | Episode: 320 | Epsilon: 0.737 | FPS: 64
+Step: 57003/1000000 | Episode: 330 | Epsilon: 0.729 | FPS: 64
+Step: 58787/1000000 | Episode: 340 | Epsilon: 0.721 | FPS: 64
+Step: 60520/1000000 | Episode: 350 | Epsilon: 0.713 | FPS: 64
+Step: 62238/1000000 | Episode: 360 | Epsilon: 0.704 | FPS: 64
+Step: 63626/1000000 | Episode: 370 | Epsilon: 0.698 | FPS: 64
+Step: 65334/1000000 | Episode: 380 | Epsilon: 0.690 | FPS: 64
+Step: 66797/1000000 | Episode: 390 | Epsilon: 0.683 | FPS: 64
+Step: 68431/1000000 | Episode: 400 | Epsilon: 0.675 | FPS: 64
+Step: 70274/1000000 | Episode: 410 | Epsilon: 0.666 | FPS: 64
+Step: 72195/1000000 | Episode: 420 | Epsilon: 0.657 | FPS: 64
+Step: 74120/1000000 | Episode: 430 | Epsilon: 0.648 | FPS: 64
+Step: 75569/1000000 | Episode: 440 | Epsilon: 0.641 | FPS: 64
+Step: 77325/1000000 | Episode: 450 | Epsilon: 0.633 | FPS: 64
+Step: 79209/1000000 | Episode: 460 | Epsilon: 0.624 | FPS: 64
+Step: 80978/1000000 | Episode: 470 | Epsilon: 0.615 | FPS: 64
+Step: 82657/1000000 | Episode: 480 | Epsilon: 0.607 | FPS: 64
+Step: 84163/1000000 | Episode: 490 | Epsilon: 0.600 | FPS: 64
+Step: 85708/1000000 | Episode: 500 | Epsilon: 0.593 | FPS: 64
+Step: 87185/1000000 | Episode: 510 | Epsilon: 0.586 | FPS: 64
+Step: 89044/1000000 | Episode: 520 | Epsilon: 0.577 | FPS: 64
+Step: 90875/1000000 | Episode: 530 | Epsilon: 0.568 | FPS: 64
+Step: 92722/1000000 | Episode: 540 | Epsilon: 0.560 | FPS: 64
+Step: 94437/1000000 | Episode: 550 | Epsilon: 0.551 | FPS: 64
+Step: 96091/1000000 | Episode: 560 | Epsilon: 0.544 | FPS: 64
+Step: 97912/1000000 | Episode: 570 | Epsilon: 0.535 | FPS: 64
+Step: 99737/1000000 | Episode: 580 | Epsilon: 0.526 | FPS: 64
+
+============================================================
+Evaluating at step 100000/1000000 (10.0%)
+Elapsed: 26m 8s | ETA: 3h 55m 12s | Speed: 63.8 steps/s
+Eval - Mean Reward: 0.50 ± 0.92, Mean Length: 183
+Achievements unlocked: 4/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_100000.pt
+[CHECKPOINT] Total elapsed: 26m 50s | Since last checkpoint: 26m 50s
+Step: 101407/1000000 | Episode: 590 | Epsilon: 0.518 | FPS: 62
+Step: 103182/1000000 | Episode: 600 | Epsilon: 0.510 | FPS: 62
+Step: 104683/1000000 | Episode: 610 | Epsilon: 0.503 | FPS: 62
+Step: 106373/1000000 | Episode: 620 | Epsilon: 0.495 | FPS: 62
+Step: 107765/1000000 | Episode: 630 | Epsilon: 0.488 | FPS: 62
+Step: 109427/1000000 | Episode: 640 | Epsilon: 0.480 | FPS: 62
+Step: 111235/1000000 | Episode: 650 | Epsilon: 0.472 | FPS: 62
+Step: 113004/1000000 | Episode: 660 | Epsilon: 0.463 | FPS: 62
+Step: 115027/1000000 | Episode: 670 | Epsilon: 0.454 | FPS: 62
+Step: 116903/1000000 | Episode: 680 | Epsilon: 0.445 | FPS: 62
+Step: 118647/1000000 | Episode: 690 | Epsilon: 0.436 | FPS: 62
+Step: 120666/1000000 | Episode: 700 | Epsilon: 0.427 | FPS: 62
+Step: 122354/1000000 | Episode: 710 | Epsilon: 0.419 | FPS: 62
+Step: 124239/1000000 | Episode: 720 | Epsilon: 0.410 | FPS: 62
+Step: 126348/1000000 | Episode: 730 | Epsilon: 0.400 | FPS: 62
+Step: 128093/1000000 | Episode: 740 | Epsilon: 0.392 | FPS: 62
+Step: 129973/1000000 | Episode: 750 | Epsilon: 0.383 | FPS: 62
+Step: 131256/1000000 | Episode: 760 | Epsilon: 0.377 | FPS: 62
+Step: 132794/1000000 | Episode: 770 | Epsilon: 0.369 | FPS: 62
+Step: 134479/1000000 | Episode: 780 | Epsilon: 0.361 | FPS: 62
+Step: 136237/1000000 | Episode: 790 | Epsilon: 0.353 | FPS: 62
+Step: 137926/1000000 | Episode: 800 | Epsilon: 0.345 | FPS: 62
+Step: 139416/1000000 | Episode: 810 | Epsilon: 0.338 | FPS: 62
+Step: 141182/1000000 | Episode: 820 | Epsilon: 0.329 | FPS: 62
+Step: 143215/1000000 | Episode: 830 | Epsilon: 0.320 | FPS: 62
+Step: 144885/1000000 | Episode: 840 | Epsilon: 0.312 | FPS: 62
+Step: 146585/1000000 | Episode: 850 | Epsilon: 0.304 | FPS: 62
+Step: 148276/1000000 | Episode: 860 | Epsilon: 0.296 | FPS: 62
+
+============================================================
+Evaluating at step 150000/1000000 (15.0%)
+Elapsed: 40m 19s | ETA: 3h 48m 33s | Speed: 62.0 steps/s
+Eval - Mean Reward: 1.15 ± 0.80, Mean Length: 182
+Achievements unlocked: 4/22
+============================================================
+
+Step: 150000/1000000 | Episode: 870 | Epsilon: 0.288 | FPS: 61
+Step: 151472/1000000 | Episode: 880 | Epsilon: 0.281 | FPS: 61
+Step: 153014/1000000 | Episode: 890 | Epsilon: 0.273 | FPS: 61
+Step: 154769/1000000 | Episode: 900 | Epsilon: 0.265 | FPS: 61
+Step: 156601/1000000 | Episode: 910 | Epsilon: 0.256 | FPS: 61
+Step: 158293/1000000 | Episode: 920 | Epsilon: 0.248 | FPS: 61
+Step: 160707/1000000 | Episode: 930 | Epsilon: 0.237 | FPS: 61
+Step: 162480/1000000 | Episode: 940 | Epsilon: 0.228 | FPS: 61
+Step: 164221/1000000 | Episode: 950 | Epsilon: 0.220 | FPS: 61
+Step: 166032/1000000 | Episode: 960 | Epsilon: 0.211 | FPS: 61
+Step: 167693/1000000 | Episode: 970 | Epsilon: 0.203 | FPS: 61
+Step: 169492/1000000 | Episode: 980 | Epsilon: 0.195 | FPS: 61
+Step: 170959/1000000 | Episode: 990 | Epsilon: 0.188 | FPS: 61
+Step: 172767/1000000 | Episode: 1000 | Epsilon: 0.179 | FPS: 61
+Step: 174758/1000000 | Episode: 1010 | Epsilon: 0.170 | FPS: 61
+Step: 176633/1000000 | Episode: 1020 | Epsilon: 0.161 | FPS: 61
+Step: 178307/1000000 | Episode: 1030 | Epsilon: 0.153 | FPS: 61
+Step: 180543/1000000 | Episode: 1040 | Epsilon: 0.142 | FPS: 61
+Step: 182286/1000000 | Episode: 1050 | Epsilon: 0.134 | FPS: 61
+Step: 184051/1000000 | Episode: 1060 | Epsilon: 0.126 | FPS: 61
+Step: 185960/1000000 | Episode: 1070 | Epsilon: 0.117 | FPS: 61
+Step: 188115/1000000 | Episode: 1080 | Epsilon: 0.106 | FPS: 61
+Step: 190144/1000000 | Episode: 1090 | Epsilon: 0.097 | FPS: 61
+Step: 191738/1000000 | Episode: 1100 | Epsilon: 0.089 | FPS: 61
+Step: 193524/1000000 | Episode: 1110 | Epsilon: 0.081 | FPS: 61
+Step: 195285/1000000 | Episode: 1120 | Epsilon: 0.072 | FPS: 61
+Step: 197028/1000000 | Episode: 1130 | Epsilon: 0.064 | FPS: 61
+Step: 198963/1000000 | Episode: 1140 | Epsilon: 0.055 | FPS: 61
+
+============================================================
+Evaluating at step 200000/1000000 (20.0%)
+Elapsed: 54m 31s | ETA: 3h 38m 6s | Speed: 61.1 steps/s
+Eval - Mean Reward: 2.10 ± 0.95, Mean Length: 172
+Achievements unlocked: 8/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_200000.pt
+[CHECKPOINT] Total elapsed: 55m 13s | Since last checkpoint: 28m 22s
+Step: 201002/1000000 | Episode: 1150 | Epsilon: 0.050 | FPS: 60
+Step: 202665/1000000 | Episode: 1160 | Epsilon: 0.050 | FPS: 60
+Step: 204475/1000000 | Episode: 1170 | Epsilon: 0.050 | FPS: 60
+Step: 206245/1000000 | Episode: 1180 | Epsilon: 0.050 | FPS: 60
+Step: 208042/1000000 | Episode: 1190 | Epsilon: 0.050 | FPS: 60
+Step: 210062/1000000 | Episode: 1200 | Epsilon: 0.050 | FPS: 60
+Step: 212190/1000000 | Episode: 1210 | Epsilon: 0.050 | FPS: 60
+Step: 214009/1000000 | Episode: 1220 | Epsilon: 0.050 | FPS: 60
+Step: 215793/1000000 | Episode: 1230 | Epsilon: 0.050 | FPS: 60
+Step: 217443/1000000 | Episode: 1240 | Epsilon: 0.050 | FPS: 60
+Step: 219423/1000000 | Episode: 1250 | Epsilon: 0.050 | FPS: 60
+Step: 221402/1000000 | Episode: 1260 | Epsilon: 0.050 | FPS: 60
+Step: 223029/1000000 | Episode: 1270 | Epsilon: 0.050 | FPS: 60
+Step: 224870/1000000 | Episode: 1280 | Epsilon: 0.050 | FPS: 60
+Step: 226824/1000000 | Episode: 1290 | Epsilon: 0.050 | FPS: 60
+Step: 228392/1000000 | Episode: 1300 | Epsilon: 0.050 | FPS: 60
+Step: 230137/1000000 | Episode: 1310 | Epsilon: 0.050 | FPS: 60
+Step: 231783/1000000 | Episode: 1320 | Epsilon: 0.050 | FPS: 60
+Step: 233762/1000000 | Episode: 1330 | Epsilon: 0.050 | FPS: 60
+Step: 235756/1000000 | Episode: 1340 | Epsilon: 0.050 | FPS: 60
+Step: 237258/1000000 | Episode: 1350 | Epsilon: 0.050 | FPS: 60
+Step: 238928/1000000 | Episode: 1360 | Epsilon: 0.050 | FPS: 60
+Step: 240688/1000000 | Episode: 1370 | Epsilon: 0.050 | FPS: 60
+Step: 242397/1000000 | Episode: 1380 | Epsilon: 0.050 | FPS: 60
+Step: 244417/1000000 | Episode: 1390 | Epsilon: 0.050 | FPS: 61
+Step: 246347/1000000 | Episode: 1400 | Epsilon: 0.050 | FPS: 61
+Step: 248152/1000000 | Episode: 1410 | Epsilon: 0.050 | FPS: 61
+
+============================================================
+Evaluating at step 250000/1000000 (25.0%)
+Elapsed: 1h 8m 44s | ETA: 3h 26m 13s | Speed: 60.6 steps/s
+Eval - Mean Reward: 2.55 ± 1.02, Mean Length: 181
+Achievements unlocked: 7/22
+============================================================
+
+Step: 250213/1000000 | Episode: 1420 | Epsilon: 0.050 | FPS: 60
+Step: 252475/1000000 | Episode: 1430 | Epsilon: 0.050 | FPS: 60
+Step: 254364/1000000 | Episode: 1440 | Epsilon: 0.050 | FPS: 60
+Step: 256049/1000000 | Episode: 1450 | Epsilon: 0.050 | FPS: 60
+Step: 257862/1000000 | Episode: 1460 | Epsilon: 0.050 | FPS: 60
+Step: 259366/1000000 | Episode: 1470 | Epsilon: 0.050 | FPS: 60
+Step: 261210/1000000 | Episode: 1480 | Epsilon: 0.050 | FPS: 60
+Step: 262785/1000000 | Episode: 1490 | Epsilon: 0.050 | FPS: 60
+Step: 264764/1000000 | Episode: 1500 | Epsilon: 0.050 | FPS: 60
+Step: 266498/1000000 | Episode: 1510 | Epsilon: 0.050 | FPS: 60
+Step: 268450/1000000 | Episode: 1520 | Epsilon: 0.050 | FPS: 60
+Step: 269975/1000000 | Episode: 1530 | Epsilon: 0.050 | FPS: 60
+Step: 272027/1000000 | Episode: 1540 | Epsilon: 0.050 | FPS: 60
+Step: 273865/1000000 | Episode: 1550 | Epsilon: 0.050 | FPS: 60
+Step: 275895/1000000 | Episode: 1560 | Epsilon: 0.050 | FPS: 60
+Step: 278096/1000000 | Episode: 1570 | Epsilon: 0.050 | FPS: 60
+Step: 279932/1000000 | Episode: 1580 | Epsilon: 0.050 | FPS: 60
+Step: 281663/1000000 | Episode: 1590 | Epsilon: 0.050 | FPS: 60
+Step: 283451/1000000 | Episode: 1600 | Epsilon: 0.050 | FPS: 60
+Step: 285364/1000000 | Episode: 1610 | Epsilon: 0.050 | FPS: 60
+Step: 287063/1000000 | Episode: 1620 | Epsilon: 0.050 | FPS: 60
+Step: 288779/1000000 | Episode: 1630 | Epsilon: 0.050 | FPS: 60
+Step: 290614/1000000 | Episode: 1640 | Epsilon: 0.050 | FPS: 60
+Step: 292521/1000000 | Episode: 1650 | Epsilon: 0.050 | FPS: 60
+Step: 294555/1000000 | Episode: 1660 | Epsilon: 0.050 | FPS: 60
+Step: 296299/1000000 | Episode: 1670 | Epsilon: 0.050 | FPS: 60
+Step: 298084/1000000 | Episode: 1680 | Epsilon: 0.050 | FPS: 60
+Step: 299989/1000000 | Episode: 1690 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 300000/1000000 (30.0%)
+Elapsed: 1h 22m 43s | ETA: 3h 13m 1s | Speed: 60.4 steps/s
+Eval - Mean Reward: 1.50 ± 1.39, Mean Length: 194
+Achievements unlocked: 8/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_300000.pt
+[CHECKPOINT] Total elapsed: 1h 23m 26s | Since last checkpoint: 28m 13s
+Step: 302070/1000000 | Episode: 1700 | Epsilon: 0.050 | FPS: 60
+Step: 303793/1000000 | Episode: 1710 | Epsilon: 0.050 | FPS: 60
+Step: 305697/1000000 | Episode: 1720 | Epsilon: 0.050 | FPS: 60
+Step: 307566/1000000 | Episode: 1730 | Epsilon: 0.050 | FPS: 60
+Step: 309272/1000000 | Episode: 1740 | Epsilon: 0.050 | FPS: 60
+Step: 311029/1000000 | Episode: 1750 | Epsilon: 0.050 | FPS: 60
+Step: 312823/1000000 | Episode: 1760 | Epsilon: 0.050 | FPS: 60
+Step: 314530/1000000 | Episode: 1770 | Epsilon: 0.050 | FPS: 60
+Step: 316325/1000000 | Episode: 1780 | Epsilon: 0.050 | FPS: 60
+Step: 318185/1000000 | Episode: 1790 | Epsilon: 0.050 | FPS: 60
+Step: 319883/1000000 | Episode: 1800 | Epsilon: 0.050 | FPS: 60
+Step: 321893/1000000 | Episode: 1810 | Epsilon: 0.050 | FPS: 60
+Step: 323809/1000000 | Episode: 1820 | Epsilon: 0.050 | FPS: 60
+Step: 326044/1000000 | Episode: 1830 | Epsilon: 0.050 | FPS: 60
+Step: 327931/1000000 | Episode: 1840 | Epsilon: 0.050 | FPS: 60
+Step: 329816/1000000 | Episode: 1850 | Epsilon: 0.050 | FPS: 60
+Step: 331752/1000000 | Episode: 1860 | Epsilon: 0.050 | FPS: 60
+Step: 333797/1000000 | Episode: 1870 | Epsilon: 0.050 | FPS: 60
+Step: 335693/1000000 | Episode: 1880 | Epsilon: 0.050 | FPS: 60
+Step: 337400/1000000 | Episode: 1890 | Epsilon: 0.050 | FPS: 60
+Step: 339233/1000000 | Episode: 1900 | Epsilon: 0.050 | FPS: 60
+Step: 340916/1000000 | Episode: 1910 | Epsilon: 0.050 | FPS: 60
+Step: 342778/1000000 | Episode: 1920 | Epsilon: 0.050 | FPS: 60
+Step: 344383/1000000 | Episode: 1930 | Epsilon: 0.050 | FPS: 60
+Step: 346299/1000000 | Episode: 1940 | Epsilon: 0.050 | FPS: 60
+Step: 348201/1000000 | Episode: 1950 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 350000/1000000 (35.0%)
+Elapsed: 1h 37m 13s | ETA: 3h 0m 33s | Speed: 60.0 steps/s
+Eval - Mean Reward: 2.15 ± 0.97, Mean Length: 195
+Achievements unlocked: 8/22
+============================================================
+
+Step: 350056/1000000 | Episode: 1960 | Epsilon: 0.050 | FPS: 59
+Step: 351919/1000000 | Episode: 1970 | Epsilon: 0.050 | FPS: 60
+Step: 353656/1000000 | Episode: 1980 | Epsilon: 0.050 | FPS: 59
+Step: 355217/1000000 | Episode: 1990 | Epsilon: 0.050 | FPS: 59
+Step: 357364/1000000 | Episode: 2000 | Epsilon: 0.050 | FPS: 59
+Step: 359333/1000000 | Episode: 2010 | Epsilon: 0.050 | FPS: 60
+Step: 360949/1000000 | Episode: 2020 | Epsilon: 0.050 | FPS: 60
+Step: 362874/1000000 | Episode: 2030 | Epsilon: 0.050 | FPS: 60
+Step: 364825/1000000 | Episode: 2040 | Epsilon: 0.050 | FPS: 60
+Step: 366717/1000000 | Episode: 2050 | Epsilon: 0.050 | FPS: 60
+Step: 368505/1000000 | Episode: 2060 | Epsilon: 0.050 | FPS: 60
+Step: 370378/1000000 | Episode: 2070 | Epsilon: 0.050 | FPS: 60
+Step: 372439/1000000 | Episode: 2080 | Epsilon: 0.050 | FPS: 60
+Step: 374222/1000000 | Episode: 2090 | Epsilon: 0.050 | FPS: 60
+Step: 376118/1000000 | Episode: 2100 | Epsilon: 0.050 | FPS: 60
+Step: 377976/1000000 | Episode: 2110 | Epsilon: 0.050 | FPS: 60
+Step: 379793/1000000 | Episode: 2120 | Epsilon: 0.050 | FPS: 60
+Step: 381725/1000000 | Episode: 2130 | Epsilon: 0.050 | FPS: 60
+Step: 383653/1000000 | Episode: 2140 | Epsilon: 0.050 | FPS: 60
+Step: 385646/1000000 | Episode: 2150 | Epsilon: 0.050 | FPS: 60
+Step: 387511/1000000 | Episode: 2160 | Epsilon: 0.050 | FPS: 60
+Step: 389539/1000000 | Episode: 2170 | Epsilon: 0.050 | FPS: 60
+Step: 391268/1000000 | Episode: 2180 | Epsilon: 0.050 | FPS: 60
+Step: 393020/1000000 | Episode: 2190 | Epsilon: 0.050 | FPS: 60
+Step: 394786/1000000 | Episode: 2200 | Epsilon: 0.050 | FPS: 60
+Step: 396515/1000000 | Episode: 2210 | Epsilon: 0.050 | FPS: 60
+Step: 398688/1000000 | Episode: 2220 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 400000/1000000 (40.0%)
+Elapsed: 1h 51m 9s | ETA: 2h 46m 43s | Speed: 60.0 steps/s
+Eval - Mean Reward: 3.35 ± 0.54, Mean Length: 207
+Achievements unlocked: 7/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_400000.pt
+[CHECKPOINT] Total elapsed: 1h 51m 53s | Since last checkpoint: 28m 27s
+Step: 400680/1000000 | Episode: 2230 | Epsilon: 0.050 | FPS: 60
+Step: 402974/1000000 | Episode: 2240 | Epsilon: 0.050 | FPS: 60
+Step: 405205/1000000 | Episode: 2250 | Epsilon: 0.050 | FPS: 60
+Step: 407059/1000000 | Episode: 2260 | Epsilon: 0.050 | FPS: 60
+Step: 409066/1000000 | Episode: 2270 | Epsilon: 0.050 | FPS: 60
+Step: 410843/1000000 | Episode: 2280 | Epsilon: 0.050 | FPS: 60
+Step: 412729/1000000 | Episode: 2290 | Epsilon: 0.050 | FPS: 60
+Step: 414659/1000000 | Episode: 2300 | Epsilon: 0.050 | FPS: 60
+Step: 416468/1000000 | Episode: 2310 | Epsilon: 0.050 | FPS: 60
+Step: 418251/1000000 | Episode: 2320 | Epsilon: 0.050 | FPS: 60
+Step: 420227/1000000 | Episode: 2330 | Epsilon: 0.050 | FPS: 60
+Step: 422042/1000000 | Episode: 2340 | Epsilon: 0.050 | FPS: 60
+Step: 423860/1000000 | Episode: 2350 | Epsilon: 0.050 | FPS: 60
+Step: 425998/1000000 | Episode: 2360 | Epsilon: 0.050 | FPS: 60
+Step: 427856/1000000 | Episode: 2370 | Epsilon: 0.050 | FPS: 60
+Step: 429773/1000000 | Episode: 2380 | Epsilon: 0.050 | FPS: 60
+Step: 431572/1000000 | Episode: 2390 | Epsilon: 0.050 | FPS: 60
+Step: 433373/1000000 | Episode: 2400 | Epsilon: 0.050 | FPS: 60
+Step: 435336/1000000 | Episode: 2410 | Epsilon: 0.050 | FPS: 60
+Step: 437128/1000000 | Episode: 2420 | Epsilon: 0.050 | FPS: 60
+Step: 439046/1000000 | Episode: 2430 | Epsilon: 0.050 | FPS: 60
+Step: 440819/1000000 | Episode: 2440 | Epsilon: 0.050 | FPS: 60
+Step: 442842/1000000 | Episode: 2450 | Epsilon: 0.050 | FPS: 60
+Step: 444644/1000000 | Episode: 2460 | Epsilon: 0.050 | FPS: 60
+Step: 446780/1000000 | Episode: 2470 | Epsilon: 0.050 | FPS: 60
+Step: 448637/1000000 | Episode: 2480 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 450000/1000000 (45.0%)
+Elapsed: 2h 5m 27s | ETA: 2h 33m 20s | Speed: 59.8 steps/s
+Eval - Mean Reward: 1.45 ± 1.31, Mean Length: 180
+Achievements unlocked: 8/22
+============================================================
+
+Step: 450356/1000000 | Episode: 2490 | Epsilon: 0.050 | FPS: 59
+Step: 452032/1000000 | Episode: 2500 | Epsilon: 0.050 | FPS: 59
+Step: 453927/1000000 | Episode: 2510 | Epsilon: 0.050 | FPS: 59
+Step: 455870/1000000 | Episode: 2520 | Epsilon: 0.050 | FPS: 60
+Step: 457693/1000000 | Episode: 2530 | Epsilon: 0.050 | FPS: 60
+Step: 459533/1000000 | Episode: 2540 | Epsilon: 0.050 | FPS: 60
+Step: 461441/1000000 | Episode: 2550 | Epsilon: 0.050 | FPS: 60
+Step: 463417/1000000 | Episode: 2560 | Epsilon: 0.050 | FPS: 60
+Step: 465297/1000000 | Episode: 2570 | Epsilon: 0.050 | FPS: 60
+Step: 467129/1000000 | Episode: 2580 | Epsilon: 0.050 | FPS: 60
+Step: 469150/1000000 | Episode: 2590 | Epsilon: 0.050 | FPS: 60
+Step: 471146/1000000 | Episode: 2600 | Epsilon: 0.050 | FPS: 60
+Step: 472982/1000000 | Episode: 2610 | Epsilon: 0.050 | FPS: 60
+Step: 474987/1000000 | Episode: 2620 | Epsilon: 0.050 | FPS: 60
+Step: 476967/1000000 | Episode: 2630 | Epsilon: 0.050 | FPS: 60
+Step: 478805/1000000 | Episode: 2640 | Epsilon: 0.050 | FPS: 60
+Step: 480700/1000000 | Episode: 2650 | Epsilon: 0.050 | FPS: 60
+Step: 482541/1000000 | Episode: 2660 | Epsilon: 0.050 | FPS: 60
+Step: 484311/1000000 | Episode: 2670 | Epsilon: 0.050 | FPS: 60
+Step: 486097/1000000 | Episode: 2680 | Epsilon: 0.050 | FPS: 60
+Step: 487957/1000000 | Episode: 2690 | Epsilon: 0.050 | FPS: 60
+Step: 489893/1000000 | Episode: 2700 | Epsilon: 0.050 | FPS: 60
+Step: 491858/1000000 | Episode: 2710 | Epsilon: 0.050 | FPS: 60
+Step: 493815/1000000 | Episode: 2720 | Epsilon: 0.050 | FPS: 60
+Step: 495824/1000000 | Episode: 2730 | Epsilon: 0.050 | FPS: 60
+Step: 497660/1000000 | Episode: 2740 | Epsilon: 0.050 | FPS: 60
+Step: 499610/1000000 | Episode: 2750 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 500000/1000000 (50.0%)
+Elapsed: 2h 19m 16s | ETA: 2h 19m 16s | Speed: 59.8 steps/s
+Eval - Mean Reward: 2.75 ± 0.79, Mean Length: 179
+Achievements unlocked: 6/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_500000.pt
+[CHECKPOINT] Total elapsed: 2h 20m 3s | Since last checkpoint: 28m 9s
+Step: 501470/1000000 | Episode: 2760 | Epsilon: 0.050 | FPS: 59
+Step: 503603/1000000 | Episode: 2770 | Epsilon: 0.050 | FPS: 60
+Step: 505659/1000000 | Episode: 2780 | Epsilon: 0.050 | FPS: 60
+Step: 507725/1000000 | Episode: 2790 | Epsilon: 0.050 | FPS: 60
+Step: 509516/1000000 | Episode: 2800 | Epsilon: 0.050 | FPS: 60
+Step: 511370/1000000 | Episode: 2810 | Epsilon: 0.050 | FPS: 60
+Step: 513324/1000000 | Episode: 2820 | Epsilon: 0.050 | FPS: 60
+Step: 515302/1000000 | Episode: 2830 | Epsilon: 0.050 | FPS: 60
+Step: 517805/1000000 | Episode: 2840 | Epsilon: 0.050 | FPS: 60
+Step: 519893/1000000 | Episode: 2850 | Epsilon: 0.050 | FPS: 60
+Step: 522164/1000000 | Episode: 2860 | Epsilon: 0.050 | FPS: 60
+Step: 524193/1000000 | Episode: 2870 | Epsilon: 0.050 | FPS: 60
+Step: 525950/1000000 | Episode: 2880 | Epsilon: 0.050 | FPS: 60
+Step: 527548/1000000 | Episode: 2890 | Epsilon: 0.050 | FPS: 60
+Step: 529480/1000000 | Episode: 2900 | Epsilon: 0.050 | FPS: 60
+Step: 531357/1000000 | Episode: 2910 | Epsilon: 0.050 | FPS: 60
+Step: 533272/1000000 | Episode: 2920 | Epsilon: 0.050 | FPS: 60
+Step: 535183/1000000 | Episode: 2930 | Epsilon: 0.050 | FPS: 60
+Step: 536979/1000000 | Episode: 2940 | Epsilon: 0.050 | FPS: 60
+Step: 539158/1000000 | Episode: 2950 | Epsilon: 0.050 | FPS: 60
+Step: 541080/1000000 | Episode: 2960 | Epsilon: 0.050 | FPS: 60
+Step: 543002/1000000 | Episode: 2970 | Epsilon: 0.050 | FPS: 60
+Step: 544883/1000000 | Episode: 2980 | Epsilon: 0.050 | FPS: 60
+Step: 546542/1000000 | Episode: 2990 | Epsilon: 0.050 | FPS: 60
+Step: 548900/1000000 | Episode: 3000 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 550000/1000000 (55.0%)
+Elapsed: 2h 33m 7s | ETA: 2h 5m 17s | Speed: 59.9 steps/s
+Eval - Mean Reward: 4.30 ± 1.12, Mean Length: 180
+Achievements unlocked: 8/22
+============================================================
+
+Step: 550969/1000000 | Episode: 3010 | Epsilon: 0.050 | FPS: 60
+Step: 552588/1000000 | Episode: 3020 | Epsilon: 0.050 | FPS: 60
+Step: 554668/1000000 | Episode: 3030 | Epsilon: 0.050 | FPS: 60
+Step: 556551/1000000 | Episode: 3040 | Epsilon: 0.050 | FPS: 60
+Step: 558260/1000000 | Episode: 3050 | Epsilon: 0.050 | FPS: 60
+Step: 559989/1000000 | Episode: 3060 | Epsilon: 0.050 | FPS: 59
+Step: 561728/1000000 | Episode: 3070 | Epsilon: 0.050 | FPS: 59
+Step: 563488/1000000 | Episode: 3080 | Epsilon: 0.050 | FPS: 59
+Step: 565035/1000000 | Episode: 3090 | Epsilon: 0.050 | FPS: 59
+Step: 567399/1000000 | Episode: 3100 | Epsilon: 0.050 | FPS: 59
+Step: 569099/1000000 | Episode: 3110 | Epsilon: 0.050 | FPS: 59
+Step: 570958/1000000 | Episode: 3120 | Epsilon: 0.050 | FPS: 59
+Step: 572810/1000000 | Episode: 3130 | Epsilon: 0.050 | FPS: 60
+Step: 574664/1000000 | Episode: 3140 | Epsilon: 0.050 | FPS: 60
+Step: 576669/1000000 | Episode: 3150 | Epsilon: 0.050 | FPS: 60
+Step: 578486/1000000 | Episode: 3160 | Epsilon: 0.050 | FPS: 60
+Step: 580759/1000000 | Episode: 3170 | Epsilon: 0.050 | FPS: 60
+Step: 582544/1000000 | Episode: 3180 | Epsilon: 0.050 | FPS: 60
+Step: 584664/1000000 | Episode: 3190 | Epsilon: 0.050 | FPS: 60
+Step: 586552/1000000 | Episode: 3200 | Epsilon: 0.050 | FPS: 60
+Step: 588499/1000000 | Episode: 3210 | Epsilon: 0.050 | FPS: 60
+Step: 590740/1000000 | Episode: 3220 | Epsilon: 0.050 | FPS: 60
+Step: 592469/1000000 | Episode: 3230 | Epsilon: 0.050 | FPS: 60
+Step: 594526/1000000 | Episode: 3240 | Epsilon: 0.050 | FPS: 60
+Step: 596320/1000000 | Episode: 3250 | Epsilon: 0.050 | FPS: 60
+Step: 598046/1000000 | Episode: 3260 | Epsilon: 0.050 | FPS: 60
+Step: 599758/1000000 | Episode: 3270 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 600000/1000000 (60.0%)
+Elapsed: 2h 47m 38s | ETA: 1h 51m 45s | Speed: 59.7 steps/s
+Eval - Mean Reward: 3.20 ± 1.04, Mean Length: 206
+Achievements unlocked: 8/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_600000.pt
+[CHECKPOINT] Total elapsed: 2h 48m 26s | Since last checkpoint: 28m 23s
+Step: 601468/1000000 | Episode: 3280 | Epsilon: 0.050 | FPS: 59
+Step: 603294/1000000 | Episode: 3290 | Epsilon: 0.050 | FPS: 59
+Step: 605027/1000000 | Episode: 3300 | Epsilon: 0.050 | FPS: 59
+Step: 606728/1000000 | Episode: 3310 | Epsilon: 0.050 | FPS: 59
+Step: 608509/1000000 | Episode: 3320 | Epsilon: 0.050 | FPS: 59
+Step: 610285/1000000 | Episode: 3330 | Epsilon: 0.050 | FPS: 59
+Step: 612217/1000000 | Episode: 3340 | Epsilon: 0.050 | FPS: 59
+Step: 614362/1000000 | Episode: 3350 | Epsilon: 0.050 | FPS: 59
+Step: 616242/1000000 | Episode: 3360 | Epsilon: 0.050 | FPS: 59
+Step: 617922/1000000 | Episode: 3370 | Epsilon: 0.050 | FPS: 59
+Step: 619712/1000000 | Episode: 3380 | Epsilon: 0.050 | FPS: 59
+Step: 621576/1000000 | Episode: 3390 | Epsilon: 0.050 | FPS: 59
+Step: 623380/1000000 | Episode: 3400 | Epsilon: 0.050 | FPS: 59
+Step: 625323/1000000 | Episode: 3410 | Epsilon: 0.050 | FPS: 59
+Step: 627401/1000000 | Episode: 3420 | Epsilon: 0.050 | FPS: 60
+Step: 629267/1000000 | Episode: 3430 | Epsilon: 0.050 | FPS: 60
+Step: 631101/1000000 | Episode: 3440 | Epsilon: 0.050 | FPS: 60
+Step: 632815/1000000 | Episode: 3450 | Epsilon: 0.050 | FPS: 60
+Step: 634719/1000000 | Episode: 3460 | Epsilon: 0.050 | FPS: 60
+Step: 636732/1000000 | Episode: 3470 | Epsilon: 0.050 | FPS: 60
+Step: 638691/1000000 | Episode: 3480 | Epsilon: 0.050 | FPS: 60
+Step: 640679/1000000 | Episode: 3490 | Epsilon: 0.050 | FPS: 60
+Step: 642834/1000000 | Episode: 3500 | Epsilon: 0.050 | FPS: 60
+Step: 644920/1000000 | Episode: 3510 | Epsilon: 0.050 | FPS: 60
+Step: 646964/1000000 | Episode: 3520 | Epsilon: 0.050 | FPS: 60
+Step: 648743/1000000 | Episode: 3530 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 650000/1000000 (65.0%)
+Elapsed: 3h 1m 29s | ETA: 1h 37m 43s | Speed: 59.7 steps/s
+Eval - Mean Reward: 3.95 ± 1.19, Mean Length: 206
+Achievements unlocked: 9/22
+============================================================
+
+Step: 650598/1000000 | Episode: 3540 | Epsilon: 0.050 | FPS: 59
+Step: 652630/1000000 | Episode: 3550 | Epsilon: 0.050 | FPS: 59
+Step: 654574/1000000 | Episode: 3560 | Epsilon: 0.050 | FPS: 59
+Step: 656703/1000000 | Episode: 3570 | Epsilon: 0.050 | FPS: 59
+Step: 658837/1000000 | Episode: 3580 | Epsilon: 0.050 | FPS: 60
+Step: 660643/1000000 | Episode: 3590 | Epsilon: 0.050 | FPS: 60
+Step: 662392/1000000 | Episode: 3600 | Epsilon: 0.050 | FPS: 60
+Step: 664499/1000000 | Episode: 3610 | Epsilon: 0.050 | FPS: 60
+Step: 666511/1000000 | Episode: 3620 | Epsilon: 0.050 | FPS: 60
+Step: 668146/1000000 | Episode: 3630 | Epsilon: 0.050 | FPS: 60
+Step: 669912/1000000 | Episode: 3640 | Epsilon: 0.050 | FPS: 60
+Step: 671877/1000000 | Episode: 3650 | Epsilon: 0.050 | FPS: 60
+Step: 673677/1000000 | Episode: 3660 | Epsilon: 0.050 | FPS: 60
+Step: 675845/1000000 | Episode: 3670 | Epsilon: 0.050 | FPS: 60
+Step: 677473/1000000 | Episode: 3680 | Epsilon: 0.050 | FPS: 60
+Step: 679382/1000000 | Episode: 3690 | Epsilon: 0.050 | FPS: 60
+Step: 681311/1000000 | Episode: 3700 | Epsilon: 0.050 | FPS: 60
+Step: 683049/1000000 | Episode: 3710 | Epsilon: 0.050 | FPS: 60
+Step: 684763/1000000 | Episode: 3720 | Epsilon: 0.050 | FPS: 60
+Step: 686674/1000000 | Episode: 3730 | Epsilon: 0.050 | FPS: 60
+Step: 688526/1000000 | Episode: 3740 | Epsilon: 0.050 | FPS: 60
+Step: 690434/1000000 | Episode: 3750 | Epsilon: 0.050 | FPS: 60
+Step: 692110/1000000 | Episode: 3760 | Epsilon: 0.050 | FPS: 60
+Step: 694434/1000000 | Episode: 3770 | Epsilon: 0.050 | FPS: 60
+Step: 696387/1000000 | Episode: 3780 | Epsilon: 0.050 | FPS: 60
+Step: 698425/1000000 | Episode: 3790 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 700000/1000000 (70.0%)
+Elapsed: 3h 15m 41s | ETA: 1h 23m 52s | Speed: 59.6 steps/s
+Eval - Mean Reward: 4.05 ± 0.80, Mean Length: 202
+Achievements unlocked: 8/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_700000.pt
+[CHECKPOINT] Total elapsed: 3h 16m 26s | Since last checkpoint: 28m 0s
+Step: 700130/1000000 | Episode: 3800 | Epsilon: 0.050 | FPS: 59
+Step: 702052/1000000 | Episode: 3810 | Epsilon: 0.050 | FPS: 59
+Step: 704141/1000000 | Episode: 3820 | Epsilon: 0.050 | FPS: 59
+Step: 705842/1000000 | Episode: 3830 | Epsilon: 0.050 | FPS: 59
+Step: 707667/1000000 | Episode: 3840 | Epsilon: 0.050 | FPS: 59
+Step: 709563/1000000 | Episode: 3850 | Epsilon: 0.050 | FPS: 59
+Step: 711866/1000000 | Episode: 3860 | Epsilon: 0.050 | FPS: 59
+Step: 713948/1000000 | Episode: 3870 | Epsilon: 0.050 | FPS: 59
+Step: 715685/1000000 | Episode: 3880 | Epsilon: 0.050 | FPS: 59
+Step: 717585/1000000 | Episode: 3890 | Epsilon: 0.050 | FPS: 59
+Step: 719609/1000000 | Episode: 3900 | Epsilon: 0.050 | FPS: 59
+Step: 721561/1000000 | Episode: 3910 | Epsilon: 0.050 | FPS: 60
+Step: 723620/1000000 | Episode: 3920 | Epsilon: 0.050 | FPS: 60
+Step: 725557/1000000 | Episode: 3930 | Epsilon: 0.050 | FPS: 60
+Step: 727434/1000000 | Episode: 3940 | Epsilon: 0.050 | FPS: 60
+Step: 729291/1000000 | Episode: 3950 | Epsilon: 0.050 | FPS: 60
+Step: 731156/1000000 | Episode: 3960 | Epsilon: 0.050 | FPS: 60
+Step: 732858/1000000 | Episode: 3970 | Epsilon: 0.050 | FPS: 60
+Step: 734762/1000000 | Episode: 3980 | Epsilon: 0.050 | FPS: 60
+Step: 736936/1000000 | Episode: 3990 | Epsilon: 0.050 | FPS: 60
+Step: 739262/1000000 | Episode: 4000 | Epsilon: 0.050 | FPS: 60
+Step: 741119/1000000 | Episode: 4010 | Epsilon: 0.050 | FPS: 60
+Step: 743145/1000000 | Episode: 4020 | Epsilon: 0.050 | FPS: 60
+Step: 744917/1000000 | Episode: 4030 | Epsilon: 0.050 | FPS: 60
+Step: 746916/1000000 | Episode: 4040 | Epsilon: 0.050 | FPS: 60
+Step: 748690/1000000 | Episode: 4050 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 750000/1000000 (75.0%)
+Elapsed: 3h 29m 10s | ETA: 1h 9m 43s | Speed: 59.8 steps/s
+Eval - Mean Reward: 4.05 ± 0.97, Mean Length: 185
+Achievements unlocked: 9/22
+============================================================
+
+Step: 750716/1000000 | Episode: 4060 | Epsilon: 0.050 | FPS: 60
+Step: 752709/1000000 | Episode: 4070 | Epsilon: 0.050 | FPS: 59
+Step: 755060/1000000 | Episode: 4080 | Epsilon: 0.050 | FPS: 59
+Step: 757069/1000000 | Episode: 4090 | Epsilon: 0.050 | FPS: 59
+Step: 759077/1000000 | Episode: 4100 | Epsilon: 0.050 | FPS: 59
+Step: 760760/1000000 | Episode: 4110 | Epsilon: 0.050 | FPS: 59
+Step: 762491/1000000 | Episode: 4120 | Epsilon: 0.050 | FPS: 60
+Step: 764410/1000000 | Episode: 4130 | Epsilon: 0.050 | FPS: 60
+Step: 766309/1000000 | Episode: 4140 | Epsilon: 0.050 | FPS: 60
+Step: 768136/1000000 | Episode: 4150 | Epsilon: 0.050 | FPS: 60
+Step: 770105/1000000 | Episode: 4160 | Epsilon: 0.050 | FPS: 60
+Step: 772073/1000000 | Episode: 4170 | Epsilon: 0.050 | FPS: 60
+Step: 773960/1000000 | Episode: 4180 | Epsilon: 0.050 | FPS: 60
+Step: 775711/1000000 | Episode: 4190 | Epsilon: 0.050 | FPS: 60
+Step: 777552/1000000 | Episode: 4200 | Epsilon: 0.050 | FPS: 60
+Step: 779286/1000000 | Episode: 4210 | Epsilon: 0.050 | FPS: 60
+Step: 781417/1000000 | Episode: 4220 | Epsilon: 0.050 | FPS: 60
+Step: 783116/1000000 | Episode: 4230 | Epsilon: 0.050 | FPS: 60
+Step: 785388/1000000 | Episode: 4240 | Epsilon: 0.050 | FPS: 60
+Step: 787297/1000000 | Episode: 4250 | Epsilon: 0.050 | FPS: 60
+Step: 789416/1000000 | Episode: 4260 | Epsilon: 0.050 | FPS: 60
+Step: 791538/1000000 | Episode: 4270 | Epsilon: 0.050 | FPS: 60
+Step: 793229/1000000 | Episode: 4280 | Epsilon: 0.050 | FPS: 60
+Step: 794917/1000000 | Episode: 4290 | Epsilon: 0.050 | FPS: 60
+Step: 796823/1000000 | Episode: 4300 | Epsilon: 0.050 | FPS: 60
+Step: 798593/1000000 | Episode: 4310 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 800000/1000000 (80.0%)
+Elapsed: 3h 43m 41s | ETA: 55m 55s | Speed: 59.6 steps/s
+Eval - Mean Reward: 3.70 ± 1.32, Mean Length: 198
+Achievements unlocked: 10/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_800000.pt
+[CHECKPOINT] Total elapsed: 3h 44m 31s | Since last checkpoint: 28m 4s
+Step: 800408/1000000 | Episode: 4320 | Epsilon: 0.050 | FPS: 59
+Step: 802262/1000000 | Episode: 4330 | Epsilon: 0.050 | FPS: 59
+Step: 804012/1000000 | Episode: 4340 | Epsilon: 0.050 | FPS: 59
+Step: 805886/1000000 | Episode: 4350 | Epsilon: 0.050 | FPS: 59
+Step: 807641/1000000 | Episode: 4360 | Epsilon: 0.050 | FPS: 59
+Step: 809501/1000000 | Episode: 4370 | Epsilon: 0.050 | FPS: 59
+Step: 811476/1000000 | Episode: 4380 | Epsilon: 0.050 | FPS: 59
+Step: 813283/1000000 | Episode: 4390 | Epsilon: 0.050 | FPS: 59
+Step: 815456/1000000 | Episode: 4400 | Epsilon: 0.050 | FPS: 59
+Step: 817408/1000000 | Episode: 4410 | Epsilon: 0.050 | FPS: 60
+Step: 819268/1000000 | Episode: 4420 | Epsilon: 0.050 | FPS: 60
+Step: 821370/1000000 | Episode: 4430 | Epsilon: 0.050 | FPS: 60
+Step: 823229/1000000 | Episode: 4440 | Epsilon: 0.050 | FPS: 60
+Step: 825113/1000000 | Episode: 4450 | Epsilon: 0.050 | FPS: 60
+Step: 826933/1000000 | Episode: 4460 | Epsilon: 0.050 | FPS: 60
+Step: 828847/1000000 | Episode: 4470 | Epsilon: 0.050 | FPS: 60
+Step: 830659/1000000 | Episode: 4480 | Epsilon: 0.050 | FPS: 60
+Step: 832638/1000000 | Episode: 4490 | Epsilon: 0.050 | FPS: 60
+Step: 834668/1000000 | Episode: 4500 | Epsilon: 0.050 | FPS: 60
+Step: 836529/1000000 | Episode: 4510 | Epsilon: 0.050 | FPS: 60
+Step: 838482/1000000 | Episode: 4520 | Epsilon: 0.050 | FPS: 60
+Step: 840262/1000000 | Episode: 4530 | Epsilon: 0.050 | FPS: 60
+Step: 842199/1000000 | Episode: 4540 | Epsilon: 0.050 | FPS: 60
+Step: 844118/1000000 | Episode: 4550 | Epsilon: 0.050 | FPS: 60
+Step: 846274/1000000 | Episode: 4560 | Epsilon: 0.050 | FPS: 60
+Step: 848062/1000000 | Episode: 4570 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 850000/1000000 (85.0%)
+Elapsed: 3h 56m 50s | ETA: 41m 47s | Speed: 59.8 steps/s
+Eval - Mean Reward: 2.90 ± 1.08, Mean Length: 186
+Achievements unlocked: 8/22
+============================================================
+
+Step: 850241/1000000 | Episode: 4580 | Epsilon: 0.050 | FPS: 60
+Step: 852115/1000000 | Episode: 4590 | Epsilon: 0.050 | FPS: 60
+Step: 854019/1000000 | Episode: 4600 | Epsilon: 0.050 | FPS: 60
+Step: 855778/1000000 | Episode: 4610 | Epsilon: 0.050 | FPS: 60
+Step: 857841/1000000 | Episode: 4620 | Epsilon: 0.050 | FPS: 60
+Step: 859880/1000000 | Episode: 4630 | Epsilon: 0.050 | FPS: 60
+Step: 861923/1000000 | Episode: 4640 | Epsilon: 0.050 | FPS: 60
+Step: 863709/1000000 | Episode: 4650 | Epsilon: 0.050 | FPS: 60
+Step: 865609/1000000 | Episode: 4660 | Epsilon: 0.050 | FPS: 60
+Step: 867301/1000000 | Episode: 4670 | Epsilon: 0.050 | FPS: 60
+Step: 869167/1000000 | Episode: 4680 | Epsilon: 0.050 | FPS: 60
+Step: 870958/1000000 | Episode: 4690 | Epsilon: 0.050 | FPS: 60
+Step: 873023/1000000 | Episode: 4700 | Epsilon: 0.050 | FPS: 60
+Step: 874936/1000000 | Episode: 4710 | Epsilon: 0.050 | FPS: 60
+Step: 876764/1000000 | Episode: 4720 | Epsilon: 0.050 | FPS: 60
+Step: 878726/1000000 | Episode: 4730 | Epsilon: 0.050 | FPS: 60
+Step: 880576/1000000 | Episode: 4740 | Epsilon: 0.050 | FPS: 60
+Step: 882813/1000000 | Episode: 4750 | Epsilon: 0.050 | FPS: 60
+Step: 885040/1000000 | Episode: 4760 | Epsilon: 0.050 | FPS: 60
+Step: 886883/1000000 | Episode: 4770 | Epsilon: 0.050 | FPS: 60
+Step: 888828/1000000 | Episode: 4780 | Epsilon: 0.050 | FPS: 60
+Step: 890635/1000000 | Episode: 4790 | Epsilon: 0.050 | FPS: 60
+Step: 892771/1000000 | Episode: 4800 | Epsilon: 0.050 | FPS: 60
+Step: 894862/1000000 | Episode: 4810 | Epsilon: 0.050 | FPS: 60
+Step: 896752/1000000 | Episode: 4820 | Epsilon: 0.050 | FPS: 60
+Step: 898690/1000000 | Episode: 4830 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 900000/1000000 (90.0%)
+Elapsed: 4h 9m 56s | ETA: 27m 46s | Speed: 60.0 steps/s
+Eval - Mean Reward: 3.10 ± 0.95, Mean Length: 204
+Achievements unlocked: 9/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_900000.pt
+[CHECKPOINT] Total elapsed: 4h 10m 41s | Since last checkpoint: 26m 10s
+Step: 900741/1000000 | Episode: 4840 | Epsilon: 0.050 | FPS: 60
+Step: 902861/1000000 | Episode: 4850 | Epsilon: 0.050 | FPS: 60
+Step: 904548/1000000 | Episode: 4860 | Epsilon: 0.050 | FPS: 60
+Step: 906383/1000000 | Episode: 4870 | Epsilon: 0.050 | FPS: 60
+Step: 908541/1000000 | Episode: 4880 | Epsilon: 0.050 | FPS: 60
+Step: 910366/1000000 | Episode: 4890 | Epsilon: 0.050 | FPS: 60
+Step: 912381/1000000 | Episode: 4900 | Epsilon: 0.050 | FPS: 60
+Step: 914492/1000000 | Episode: 4910 | Epsilon: 0.050 | FPS: 60
+Step: 916390/1000000 | Episode: 4920 | Epsilon: 0.050 | FPS: 60
+Step: 918222/1000000 | Episode: 4930 | Epsilon: 0.050 | FPS: 60
+Step: 920021/1000000 | Episode: 4940 | Epsilon: 0.050 | FPS: 60
+Step: 921866/1000000 | Episode: 4950 | Epsilon: 0.050 | FPS: 60
+Step: 923705/1000000 | Episode: 4960 | Epsilon: 0.050 | FPS: 60
+Step: 925681/1000000 | Episode: 4970 | Epsilon: 0.050 | FPS: 60
+Step: 927479/1000000 | Episode: 4980 | Epsilon: 0.050 | FPS: 60
+Step: 929441/1000000 | Episode: 4990 | Epsilon: 0.050 | FPS: 60
+Step: 931249/1000000 | Episode: 5000 | Epsilon: 0.050 | FPS: 60
+Step: 933142/1000000 | Episode: 5010 | Epsilon: 0.050 | FPS: 60
+Step: 934895/1000000 | Episode: 5020 | Epsilon: 0.050 | FPS: 60
+Step: 936864/1000000 | Episode: 5030 | Epsilon: 0.050 | FPS: 60
+Step: 938911/1000000 | Episode: 5040 | Epsilon: 0.050 | FPS: 60
+Step: 940620/1000000 | Episode: 5050 | Epsilon: 0.050 | FPS: 60
+Step: 942427/1000000 | Episode: 5060 | Epsilon: 0.050 | FPS: 60
+Step: 944377/1000000 | Episode: 5070 | Epsilon: 0.050 | FPS: 60
+Step: 946601/1000000 | Episode: 5080 | Epsilon: 0.050 | FPS: 60
+Step: 948552/1000000 | Episode: 5090 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 950000/1000000 (95.0%)
+Elapsed: 4h 22m 42s | ETA: 13m 49s | Speed: 60.3 steps/s
+Eval - Mean Reward: 3.90 ± 1.08, Mean Length: 199
+Achievements unlocked: 8/22
+============================================================
+
+Step: 950347/1000000 | Episode: 5100 | Epsilon: 0.050 | FPS: 60
+Step: 952257/1000000 | Episode: 5110 | Epsilon: 0.050 | FPS: 60
+Step: 954034/1000000 | Episode: 5120 | Epsilon: 0.050 | FPS: 60
+Step: 955932/1000000 | Episode: 5130 | Epsilon: 0.050 | FPS: 60
+Step: 957697/1000000 | Episode: 5140 | Epsilon: 0.050 | FPS: 60
+Step: 959676/1000000 | Episode: 5150 | Epsilon: 0.050 | FPS: 60
+Step: 961265/1000000 | Episode: 5160 | Epsilon: 0.050 | FPS: 60
+Step: 963018/1000000 | Episode: 5170 | Epsilon: 0.050 | FPS: 60
+Step: 965110/1000000 | Episode: 5180 | Epsilon: 0.050 | FPS: 60
+Step: 967137/1000000 | Episode: 5190 | Epsilon: 0.050 | FPS: 60
+Step: 969072/1000000 | Episode: 5200 | Epsilon: 0.050 | FPS: 60
+Step: 971100/1000000 | Episode: 5210 | Epsilon: 0.050 | FPS: 60
+Step: 972997/1000000 | Episode: 5220 | Epsilon: 0.050 | FPS: 60
+Step: 974894/1000000 | Episode: 5230 | Epsilon: 0.050 | FPS: 60
+Step: 976774/1000000 | Episode: 5240 | Epsilon: 0.050 | FPS: 60
+Step: 978861/1000000 | Episode: 5250 | Epsilon: 0.050 | FPS: 60
+Step: 980775/1000000 | Episode: 5260 | Epsilon: 0.050 | FPS: 60
+Step: 982878/1000000 | Episode: 5270 | Epsilon: 0.050 | FPS: 60
+Step: 984566/1000000 | Episode: 5280 | Epsilon: 0.050 | FPS: 60
+Step: 986571/1000000 | Episode: 5290 | Epsilon: 0.050 | FPS: 60
+Step: 988421/1000000 | Episode: 5300 | Epsilon: 0.050 | FPS: 60
+Step: 990434/1000000 | Episode: 5310 | Epsilon: 0.050 | FPS: 60
+Step: 992270/1000000 | Episode: 5320 | Epsilon: 0.050 | FPS: 60
+Step: 994244/1000000 | Episode: 5330 | Epsilon: 0.050 | FPS: 60
+Step: 996395/1000000 | Episode: 5340 | Epsilon: 0.050 | FPS: 60
+Step: 998086/1000000 | Episode: 5350 | Epsilon: 0.050 | FPS: 60
+
+============================================================
+Evaluating at step 1000000/1000000 (100.0%)
+Elapsed: 4h 36m 30s | ETA: 0s | Speed: 60.3 steps/s
+Eval - Mean Reward: 4.10 ± 1.14, Mean Length: 200
+Achievements unlocked: 8/22
+============================================================
+
+[CHECKPOINT] Saved to logdir_extended_exploration/base-dqn-extended/2/checkpoint_1000000.pt
+[CHECKPOINT] Total elapsed: 4h 37m 15s | Since last checkpoint: 26m 34s
+
+============================================================
+FINAL EVALUATION
+Total training time: 4h 37m 17s
+============================================================
+Final Mean Reward: 3.50 ± 1.02
+Final Achievements: 8/22
+
+Final Achievement Success Rates:
+  place_plant: 95.0%
+  collect_sapling: 95.0%
+  collect_wood: 85.0%
+  wake_up: 55.0%
+  collect_drink: 50.0%
+  place_table: 35.0%
+  eat_cow: 20.0%
+  defeat_skeleton: 5.0%
+
+Saved final model to logdir_extended_exploration/base-dqn-extended/2/final_model.pt
+Metrics saved to logdir_extended_exploration/base-dqn-extended/2/metrics.json
+Metadata saved to logdir_extended_exploration/base-dqn-extended/2/metadata.json
+============================================================
+TRAINING COMPLETE!
+============================================================
+
+Final Training Statistics:
+  Training Time: 4h 37m 17s
+  Final Eval Reward: 4.10 ± 1.14
+  Best Eval Reward: 4.30
+  Total Episodes: 5359
+  Final Loss: 0.0245
+  Final Epsilon: 0.0500
+============================================================

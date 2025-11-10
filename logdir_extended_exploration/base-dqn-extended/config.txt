@@ -1,0 +1,10 @@
+Experiment: base-dqn-extended
+Timestamp: 20251109_140544
+Steps: 1000000
+Eval Interval: 50000
+Eval Episodes: 20
+Seeds: 0 1 2
+Arguments: 
+Epsilon Decay Steps: 200000
+Epsilon End: 0.05
+Description: Extended epsilon exploration experiment

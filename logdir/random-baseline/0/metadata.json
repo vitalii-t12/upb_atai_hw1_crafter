@@ -1,0 +1,89 @@
+{
+  "experiment_name": "training_run",
+  "timestamp_start": "2025-11-09T12:39:48.602854",
+  "timestamp_start_unix": 1762691988.602872,
+  "git": {
+    "commit_hash": "507a1d029e50fa04c8fdebc7d7f50c3a8d20278f",
+    "commit_short": "507a1d0",
+    "branch": "test-1",
+    "has_uncommitted_changes": true,
+    "uncommitted_files": "?? logdir/"
+  },
+  "system": {
+    "hostname": "dr1-v100s-1",
+    "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.39",
+    "system": "Linux",
+    "release": "6.8.0-87-generic",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "python_version": "3.12.3",
+    "cpu_count": 15
+  },
+  "gpu": [
+    {
+      "name": "Tesla V100S-PCIE-32GB",
+      "driver_version": "580.95.05",
+      "memory_total": "32768 MiB"
+    }
+  ],
+  "packages": {
+    "torch": "2.9.0+cu128",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "cudnn_version": 91002,
+    "numpy": "2.3.4",
+    "crafter": "unknown",
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]"
+  },
+  "arguments": {
+    "env_name": "crafter",
+    "steps": 100000,
+    "eval_interval": 25000,
+    "eval_episodes": 20,
+    "seed": 0,
+    "logdir": "logdir/random-baseline/0",
+    "device": "cuda",
+    "lr": 0.0001,
+    "batch_size": 32,
+    "buffer_size": 100000,
+    "gamma": 0.99,
+    "target_update_freq": 2500,
+    "training_starts": 1000000,
+    "update_freq": 4,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.01,
+    "epsilon_decay_steps": 50000,
+    "double_dqn": false,
+    "dueling": false,
+    "n_step": 1,
+    "munchausen": false,
+    "munchausen_alpha": 0.9,
+    "munchausen_tau": 0.03,
+    "hidden_size": 512,
+    "grad_clip": 10.0,
+    "save_freq": 100000,
+    "resume": null
+  },
+  "environment": {
+    "user": "vi",
+    "cwd": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter",
+    "python_executable": "/home/vi/remote-dev/uni/upb_atai_hw1_crafter/.venv/bin/python"
+  },
+  "timestamp_end": "2025-11-09T13:02:34.278132",
+  "timestamp_end_unix": 1762693354.27816,
+  "duration": {
+    "seconds": 1365.6752882003784,
+    "minutes": 22.76125480333964,
+    "hours": 0.3793542467223273,
+    "human_readable": "22m 45s"
+  },
+  "training_stats": {
+    "final_eval_reward_mean": -0.9,
+    "best_eval_reward": -0.8999999999999998,
+    "final_eval_reward_std": 9.930136612989092e-17,
+    "total_episodes": 564,
+    "final_epsilon": 0.010000000000000009,
+    "training_time_seconds": 1318.8490912914276,
+    "training_time_formatted": "21m 58s"
+  }
+}

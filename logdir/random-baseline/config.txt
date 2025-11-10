@@ -1,0 +1,7 @@
+Experiment: random-baseline
+Timestamp: 20251109_123944
+Steps: 100000
+Eval Interval: 25000
+Eval Episodes: 20
+Seeds: 0 1 2
+Description: Random agent (no learning) for baseline comparison
