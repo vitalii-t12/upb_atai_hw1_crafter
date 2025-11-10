@@ -1,0 +1,20 @@
+Found 3 run(s) in logdir/random-baseline
+  - logdir/random-baseline/0
+  - logdir/random-baseline/1
+  - logdir/random-baseline/2
+
+Aggregating results...
+
+Creating plots...
+Saved rewards plot to logdir/random-baseline/plots/rewards.png
+Saved training metrics plot to logdir/random-baseline/plots/training_metrics.png
+Saved summary plot to logdir/random-baseline/plots/summary.png
+
+============================================================
+FINAL PERFORMANCE STATISTICS
+============================================================
+Final Eval Reward: -0.90 ± 0.00
+============================================================
+
+
+All plots saved to logdir/random-baseline/plots

@@ -359,3 +359,35 @@ Step: 413254/1000000 | Episode: 2300 | Epsilon: 0.050 | FPS: 53
 Step: 415326/1000000 | Episode: 2310 | Epsilon: 0.050 | FPS: 53
 Step: 417145/1000000 | Episode: 2320 | Epsilon: 0.050 | FPS: 53
 Step: 419012/1000000 | Episode: 2330 | Epsilon: 0.050 | FPS: 53
+Step: 420914/1000000 | Episode: 2340 | Epsilon: 0.050 | FPS: 53
+Step: 422732/1000000 | Episode: 2350 | Epsilon: 0.050 | FPS: 53
+Step: 424592/1000000 | Episode: 2360 | Epsilon: 0.050 | FPS: 53
+Step: 426390/1000000 | Episode: 2370 | Epsilon: 0.050 | FPS: 53
+Step: 428432/1000000 | Episode: 2380 | Epsilon: 0.050 | FPS: 53
+Step: 430475/1000000 | Episode: 2390 | Epsilon: 0.050 | FPS: 54
+Step: 432467/1000000 | Episode: 2400 | Epsilon: 0.050 | FPS: 54
+Step: 434392/1000000 | Episode: 2410 | Epsilon: 0.050 | FPS: 53
+Step: 436023/1000000 | Episode: 2420 | Epsilon: 0.050 | FPS: 54
+Step: 437608/1000000 | Episode: 2430 | Epsilon: 0.050 | FPS: 53
+Step: 439613/1000000 | Episode: 2440 | Epsilon: 0.050 | FPS: 53
+Step: 441396/1000000 | Episode: 2450 | Epsilon: 0.050 | FPS: 53
+Step: 443056/1000000 | Episode: 2460 | Epsilon: 0.050 | FPS: 53
+Step: 444643/1000000 | Episode: 2470 | Epsilon: 0.050 | FPS: 53
+Step: 446395/1000000 | Episode: 2480 | Epsilon: 0.050 | FPS: 53
+Step: 448496/1000000 | Episode: 2490 | Epsilon: 0.050 | FPS: 53
+
+============================================================
+Evaluating at step 450000/1000000 (45.0%)
+Elapsed: 2h 20m 33s | ETA: 2h 51m 48s | Speed: 53.4 steps/s
+Eval - Mean Reward: 4.00 ± 1.41, Mean Length: 186
+Achievements unlocked: 9/22
+============================================================
+
+Step: 450275/1000000 | Episode: 2500 | Epsilon: 0.050 | FPS: 53
+Step: 452569/1000000 | Episode: 2510 | Epsilon: 0.050 | FPS: 53
+Step: 454362/1000000 | Episode: 2520 | Epsilon: 0.050 | FPS: 53
+Step: 456234/1000000 | Episode: 2530 | Epsilon: 0.050 | FPS: 53
+Step: 458251/1000000 | Episode: 2540 | Epsilon: 0.050 | FPS: 53
+Step: 460103/1000000 | Episode: 2550 | Epsilon: 0.050 | FPS: 53
+Step: 461873/1000000 | Episode: 2560 | Epsilon: 0.050 | FPS: 53
+Step: 463727/1000000 | Episode: 2570 | Epsilon: 0.050 | FPS: 53

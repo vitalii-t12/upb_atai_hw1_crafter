@@ -1,0 +1,23 @@
+Found 3 run(s) in logdir/dqn-nstep3
+  - logdir/dqn-nstep3/0
+  - logdir/dqn-nstep3/1
+  - logdir/dqn-nstep3/2
+
+Aggregating results...
+
+Creating plots...
+Saved rewards plot to logdir/dqn-nstep3/plots/rewards.png
+Saved training metrics plot to logdir/dqn-nstep3/plots/training_metrics.png
+Saved achievement spectrum to logdir/dqn-nstep3/plots/achievement_spectrum.png
+Saved summary plot to logdir/dqn-nstep3/plots/summary.png
+
+============================================================
+FINAL PERFORMANCE STATISTICS
+============================================================
+Final Eval Reward: 4.48 ± 0.16
+Achievements Unlocked (>5%): 10/22
+Crafter Score: 28.78%
+============================================================
+
+
+All plots saved to logdir/dqn-nstep3/plots

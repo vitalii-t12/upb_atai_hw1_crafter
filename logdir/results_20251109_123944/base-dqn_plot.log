@@ -1,0 +1,23 @@
+Found 3 run(s) in logdir/base-dqn
+  - logdir/base-dqn/0
+  - logdir/base-dqn/1
+  - logdir/base-dqn/2
+
+Aggregating results...
+
+Creating plots...
+Saved rewards plot to logdir/base-dqn/plots/rewards.png
+Saved training metrics plot to logdir/base-dqn/plots/training_metrics.png
+Saved achievement spectrum to logdir/base-dqn/plots/achievement_spectrum.png
+Saved summary plot to logdir/base-dqn/plots/summary.png
+
+============================================================
+FINAL PERFORMANCE STATISTICS
+============================================================
+Final Eval Reward: 4.17 ± 0.10
+Achievements Unlocked (>5%): 8/22
+Crafter Score: 30.62%
+============================================================
+
+
+All plots saved to logdir/base-dqn/plots

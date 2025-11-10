@@ -1,0 +1,23 @@
+Found 3 run(s) in logdir/full-enhanced
+  - logdir/full-enhanced/0
+  - logdir/full-enhanced/1
+  - logdir/full-enhanced/2
+
+Aggregating results...
+
+Creating plots...
+Saved rewards plot to logdir/full-enhanced/plots/rewards.png
+Saved training metrics plot to logdir/full-enhanced/plots/training_metrics.png
+Saved achievement spectrum to logdir/full-enhanced/plots/achievement_spectrum.png
+Saved summary plot to logdir/full-enhanced/plots/summary.png
+
+============================================================
+FINAL PERFORMANCE STATISTICS
+============================================================
+Final Eval Reward: 2.37 ± 0.06
+Achievements Unlocked (>5%): 5/22
+Crafter Score: 35.75%
+============================================================
+
+
+All plots saved to logdir/full-enhanced/plots

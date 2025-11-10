@@ -1,0 +1,25 @@
+/home/vi/remote-dev/uni/upb_atai_hw1_crafter/analysis/plot_eval_performance.py:229: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
+  plt.tight_layout()
+Found 3 run(s) in logdir/enhanced-dqn
+  - logdir/enhanced-dqn/0
+  - logdir/enhanced-dqn/1
+  - logdir/enhanced-dqn/2
+
+Aggregating results...
+
+Creating plots...
+Saved rewards plot to logdir/enhanced-dqn/plots/rewards.png
+Saved training metrics plot to logdir/enhanced-dqn/plots/training_metrics.png
+Saved achievement spectrum to logdir/enhanced-dqn/plots/achievement_spectrum.png
+Saved summary plot to logdir/enhanced-dqn/plots/summary.png
+
+============================================================
+FINAL PERFORMANCE STATISTICS
+============================================================
+Final Eval Reward: 4.90 ± 0.16
+Achievements Unlocked (>5%): 8/22
+Crafter Score: 28.73%
+============================================================
+
+
+All plots saved to logdir/enhanced-dqn/plots
