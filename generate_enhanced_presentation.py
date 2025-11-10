@@ -70,22 +70,13 @@ def add_title_slide(prs, title, subtitle):
     date_frame.paragraphs[0].font.color.rgb = RGBColor(100, 100, 100)
     date_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
 
-    # Add key results box with colored background
-    results_shape = slide.shapes.add_shape(
-        MSO_SHAPE.ROUNDED_RECTANGLE,
-        Inches(1), Inches(6),
-        Inches(8), Inches(1)
-    )
-    results_shape.fill.solid()
-    results_shape.fill.fore_color.rgb = COLOR_SUCCESS
-    results_shape.line.color.rgb = COLOR_SUCCESS
-
-    results_frame = results_shape.text_frame
-    results_frame.text = "4.90 reward (5.4× better than random)  •  10/22 achievements  •  6 experiments × 3 seeds"
-    results_frame.paragraphs[0].font.size = Pt(16)
-    results_frame.paragraphs[0].font.bold = True
-    results_frame.paragraphs[0].font.color.rgb = RGBColor(255, 255, 255)
-    results_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    # Add institution/course (optional)
+    inst_box = slide.shapes.add_textbox(Inches(0.5), Inches(6), Inches(9), Inches(0.5))
+    inst_frame = inst_box.text_frame
+    inst_frame.text = "Advanced Topics in Artificial Intelligence"
+    inst_frame.paragraphs[0].font.size = Pt(16)
+    inst_frame.paragraphs[0].font.color.rgb = RGBColor(100, 100, 100)
+    inst_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
 
     return slide
 
@@ -246,12 +237,21 @@ add_bullet_text(tf, "Hyperparameters: LR=1e-4 | Buffer=100k | Batch=32 | γ=0.99
 print("Slide 4: Comprehensive Results...")
 slide = add_content_slide(prs, "Comprehensive Experimental Results", has_colored_bg=True)
 
+# Add context explanation
+context_box = slide.shapes.add_textbox(Inches(0.3), Inches(0.95), Inches(9.4), Inches(0.3))
+tf = context_box.text_frame
+tf.text = "Systematic Testing: Base DQN + 3 enhancements (Double DQN, Dueling, N-step) + exploration schedules = 8 configurations × 3 seeds each"
+tf.paragraphs[0].font.size = Pt(12)
+tf.paragraphs[0].font.bold = True
+tf.paragraphs[0].font.color.rgb = COLOR_TITLE
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+
 # Add table
 rows, cols = 9, 5
 left = Inches(0.3)
 top = Inches(1.3)
 width = Inches(9.4)
-height = Inches(5.5)
+height = Inches(5)
 
 table = slide.shapes.add_table(rows, cols, left, top, width, height).table
 
@@ -327,16 +327,41 @@ for idx, row_data in enumerate(ext_data):
         cell.fill.solid()
         cell.fill.fore_color.rgb = RGBColor(255, 245, 240)
 
+# Add interpretation boxes
+interp_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(0.3), Inches(6.4),
+    Inches(9.4), Inches(0.55)
+)
+interp_box.fill.solid()
+interp_box.fill.fore_color.rgb = RGBColor(255, 250, 200)
+interp_box.line.color.rgb = RGBColor(200, 150, 0)
+
+tf = interp_box.text_frame
+tf.word_wrap = True
+tf.margin_left = Inches(0.1)
+add_bullet_text(tf, "Key Findings: Double DQN + Dueling is optimal (⭐ 4.90 reward). N-step helps but less than Double+Dueling. Munchausen causes instability (2.37 reward). Extended exploration HURTS performance (-12-15%).", level=0, font_size=12, bold=True, color=RGBColor(100, 70, 0))
+
 # Add note
-note_box = slide.shapes.add_textbox(Inches(0.3), Inches(7), Inches(9.4), Inches(0.3))
+note_box = slide.shapes.add_textbox(Inches(0.3), Inches(7.05), Inches(9.4), Inches(0.25))
 tf = note_box.text_frame
-tf.text = "⭐ = Best configuration  |  Total training: 8 experiments × 3 seeds × 1M steps = 24M steps  |  ~75 GPU-hours"
+tf.text = "All results: Mean ± Std over 3 seeds  |  Training: 1M steps per run  |  Total: 24M steps (~75 GPU-hours)"
 tf.paragraphs[0].font.size = Pt(10)
 tf.paragraphs[0].font.italic = True
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
 
 # Slide 5: Visual Comparison - Bar Chart
 print("Slide 5: Visual Comparison...")
-slide = add_content_slide(prs, "Performance Comparison Across All Experiments")
+slide = add_content_slide(prs, "Best Configuration: Enhanced DQN Performance")
+
+# Add explanation at top
+exp_box = slide.shapes.add_textbox(Inches(0.3), Inches(0.95), Inches(9.4), Inches(0.3))
+tf = exp_box.text_frame
+tf.text = "Why This Configuration? Double DQN fixes overestimation + Dueling separates value/advantage = more stable Q-values"
+tf.paragraphs[0].font.size = Pt(12)
+tf.paragraphs[0].font.bold = True
+tf.paragraphs[0].font.color.rgb = COLOR_ACCENT
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
 
 # Add comparison of main experiments with summary plot
 summary_path = "logdir/enhanced-dqn/plots/summary.png"
@@ -344,33 +369,59 @@ if os.path.exists(summary_path):
     pic = slide.shapes.add_picture(summary_path, Inches(0.3), Inches(1.3), width=Inches(9.4))
     print(f"  Added: {summary_path}")
 
-# Add key findings box
-findings_box = slide.shapes.add_textbox(Inches(0.5), Inches(6.8), Inches(9), Inches(0.5))
+# Add detailed findings box
+findings_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(0.5), Inches(6.5),
+    Inches(9), Inches(0.8)
+)
+findings_box.fill.solid()
+findings_box.fill.fore_color.rgb = RGBColor(230, 255, 230)
+findings_box.line.color.rgb = COLOR_SUCCESS
+
 tf = findings_box.text_frame
 tf.word_wrap = True
-p = tf.paragraphs[0]
-p.text = "Key Finding: Double DQN + Dueling achieves highest reward (4.90) with lowest variance (0.16)"
-p.font.size = Pt(14)
-p.font.bold = True
-p.font.color.rgb = COLOR_SUCCESS
-p.alignment = PP_ALIGN.CENTER
+tf.margin_left = Inches(0.1)
+add_bullet_text(tf, "What This Shows: 4-panel visualization of our best agent", level=0, font_size=13, bold=True, color=COLOR_TITLE)
+add_bullet_text(tf, "Top-left: Reward progression (4.90 ± 0.16, 5.4× better than random) | Top-right: 10/22 achievements unlocked", level=1, font_size=11)
+add_bullet_text(tf, "Bottom-left: Stable Q-values & low loss | Bottom-right: Success rates across all 22 Crafter skills", level=1, font_size=11)
 
 # Slide 6: Training Dynamics Comparison
 print("Slide 6: Training Dynamics...")
-slide = add_content_slide(prs, "Training Dynamics: Learning Over Time")
+slide = add_content_slide(prs, "Training Dynamics: How the Agent Learns")
+
+# Add explanation at top
+exp_box = slide.shapes.add_textbox(Inches(0.3), Inches(0.95), Inches(9.4), Inches(0.25))
+tf = exp_box.text_frame
+tf.text = "MANDATORY PLOT: Average Episodic Reward Over Training - Shows both training progress and evaluation performance"
+tf.paragraphs[0].font.size = Pt(12)
+tf.paragraphs[0].font.bold = True
+tf.paragraphs[0].font.color.rgb = COLOR_TITLE
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
 
 # Add main enhanced-dqn rewards plot
 rewards_path = "logdir/enhanced-dqn/plots/rewards.png"
 if os.path.exists(rewards_path):
-    pic = slide.shapes.add_picture(rewards_path, Inches(0.3), Inches(1.2), width=Inches(9.4))
+    pic = slide.shapes.add_picture(rewards_path, Inches(0.3), Inches(1.25), width=Inches(9.4))
     print(f"  Added: {rewards_path}")
 
-# Add info box
-info_box = slide.shapes.add_textbox(Inches(0.5), Inches(6.7), Inches(9), Inches(0.6))
-tf = info_box.text_frame
+# Add detailed interpretation box
+interp_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(0.5), Inches(6.5),
+    Inches(9), Inches(0.75)
+)
+interp_box.fill.solid()
+interp_box.fill.fore_color.rgb = RGBColor(240, 245, 255)
+interp_box.line.color.rgb = COLOR_ACCENT
+
+tf = interp_box.text_frame
 tf.word_wrap = True
-add_bullet_text(tf, "MANDATORY PLOT: Average episodic reward showing training & evaluation", level=0, font_size=12, bold=True)
-add_bullet_text(tf, "Phase 1 (0-50k): Random exploration | Phase 2 (50k-200k): Rapid learning | Phase 3 (200k-1M): Refinement", level=0, font_size=11)
+tf.margin_left = Inches(0.1)
+add_bullet_text(tf, "What We See: Three distinct learning phases", level=0, font_size=13, bold=True, color=COLOR_TITLE)
+add_bullet_text(tf, "Phase 1 (0-50k steps): Exploration phase - ε decays from 1.0→0.01, agent explores randomly, reward increases slowly", level=1, font_size=11)
+add_bullet_text(tf, "Phase 2 (50k-200k): Rapid learning - exploitation begins, sharp performance gain, reaches ~4.0 reward", level=1, font_size=11)
+add_bullet_text(tf, "Phase 3 (200k-1M): Refinement - gradual improvement to 4.90 ± 0.16, low variance = stable policy", level=1, font_size=11)
 
 # Slide 7: Exploration Experiment Deep Dive
 print("Slide 7: Exploration Experiment...")
@@ -463,51 +514,77 @@ p2.alignment = PP_ALIGN.CENTER
 
 # Slide 8: Side-by-Side Training Curves
 print("Slide 8: Training Curves Comparison...")
-slide = add_content_slide(prs, "Training Curves: Standard vs Extended Exploration")
+slide = add_content_slide(prs, "Visual Proof: Extended Exploration Hurts Performance")
 
-# Standard exploration
+# Add explanation at top
+exp_box = slide.shapes.add_textbox(Inches(0.2), Inches(0.95), Inches(9.6), Inches(0.25))
+tf = exp_box.text_frame
+tf.text = "Direct Comparison: Same algorithm, same hyperparameters, only difference is ε-decay schedule (50k vs 200k steps)"
+tf.paragraphs[0].font.size = Pt(12)
+tf.paragraphs[0].font.bold = True
+tf.paragraphs[0].font.color.rgb = COLOR_TITLE
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+
+# Standard exploration - TOP ROW
 std_rewards = "logdir/enhanced-dqn/plots/rewards.png"
 if os.path.exists(std_rewards):
-    pic = slide.shapes.add_picture(std_rewards, Inches(0.2), Inches(1.2), width=Inches(4.8))
+    pic = slide.shapes.add_picture(std_rewards, Inches(0.5), Inches(1.25), width=Inches(9))
     # Add label
-    label_box = slide.shapes.add_textbox(Inches(0.2), Inches(1.2), Inches(4.8), Inches(0.4))
+    label_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.25), Inches(9), Inches(0.4))
     label_box.fill.solid()
     label_box.fill.fore_color.rgb = COLOR_SUCCESS
     tf = label_box.text_frame
-    tf.text = "Standard (50k ε-decay) - BEST"
+    tf.text = "Standard Schedule (50k ε-decay): ε from 1.0→0.01 over 50k steps ✓ BEST PERFORMANCE"
     tf.paragraphs[0].font.size = Pt(14)
     tf.paragraphs[0].font.bold = True
     tf.paragraphs[0].font.color.rgb = RGBColor(255, 255, 255)
     tf.paragraphs[0].alignment = PP_ALIGN.CENTER
     print(f"  Added: {std_rewards}")
 
-# Extended exploration
+# Extended exploration - BOTTOM ROW
 ext_rewards = "logdir_extended_exploration/enhanced-dqn-extended/plots/rewards.png"
 if os.path.exists(ext_rewards):
-    pic = slide.shapes.add_picture(ext_rewards, Inches(5), Inches(1.2), width=Inches(4.8))
+    pic = slide.shapes.add_picture(ext_rewards, Inches(0.5), Inches(4), width=Inches(9))
     # Add label
-    label_box = slide.shapes.add_textbox(Inches(5), Inches(1.2), Inches(4.8), Inches(0.4))
+    label_box = slide.shapes.add_textbox(Inches(0.5), Inches(4), Inches(9), Inches(0.4))
     label_box.fill.solid()
     label_box.fill.fore_color.rgb = COLOR_ERROR
     tf = label_box.text_frame
-    tf.text = "Extended (200k ε-decay) - Lower Performance"
+    tf.text = "Extended Schedule (200k ε-decay): ε from 1.0→0.05 over 200k steps ✗ LOWER PERFORMANCE (-12%)"
     tf.paragraphs[0].font.size = Pt(14)
     tf.paragraphs[0].font.bold = True
     tf.paragraphs[0].font.color.rgb = RGBColor(255, 255, 255)
     tf.paragraphs[0].alignment = PP_ALIGN.CENTER
     print(f"  Added: {ext_rewards}")
 
-# Add comparison note
-note_box = slide.shapes.add_textbox(Inches(0.5), Inches(6.8), Inches(9), Inches(0.5))
-tf = note_box.text_frame
-tf.text = "Notice: Extended schedule (right) shows slower convergence and more variance despite 4× more exploration time"
-tf.paragraphs[0].font.size = Pt(13)
-tf.paragraphs[0].font.bold = True
-tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+# Add detailed interpretation box at bottom
+interp_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(0.5), Inches(6.8),
+    Inches(9), Inches(0.45)
+)
+interp_box.fill.solid()
+interp_box.fill.fore_color.rgb = RGBColor(255, 240, 240)
+interp_box.line.color.rgb = COLOR_ERROR
+
+tf = interp_box.text_frame
+tf.word_wrap = True
+tf.margin_left = Inches(0.1)
+tf.margin_top = Inches(0.05)
+add_bullet_text(tf, "Conclusion: Standard (top) shows sharp improvement at 50k → final 4.90. Extended (bottom) slows learning until 200k → only 4.33 (-12%). Why? Too much random exploration delays Q-network convergence to good policy.", level=0, font_size=11, bold=True, color=COLOR_ERROR)
 
 # Slide 9: Achievement Spectrum
 print("Slide 9: Achievement Spectrum...")
 slide = add_content_slide(prs, "Achievement Spectrum: What Skills Were Learned? (BONUS)")
+
+# Add explanation at top
+exp_box = slide.shapes.add_textbox(Inches(0.3), Inches(0.95), Inches(9.4), Inches(0.3))
+tf = exp_box.text_frame
+tf.text = "BONUS PLOT: Success rates across all 22 Crafter achievements - Shows what specific skills the agent learned"
+tf.paragraphs[0].font.size = Pt(12)
+tf.paragraphs[0].font.bold = True
+tf.paragraphs[0].font.color.rgb = COLOR_TITLE
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
 
 # Add achievement spectrum plot
 achievement_path = "logdir/enhanced-dqn/plots/achievement_spectrum.png"
@@ -515,32 +592,69 @@ if os.path.exists(achievement_path):
     pic = slide.shapes.add_picture(achievement_path, Inches(0.8), Inches(1.3), width=Inches(8.4))
     print(f"  Added: {achievement_path}")
 
+# Add interpretation box
+interp_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(0.5), Inches(5.8),
+    Inches(9), Inches(0.6)
+)
+interp_box.fill.solid()
+interp_box.fill.fore_color.rgb = RGBColor(255, 250, 230)
+interp_box.line.color.rgb = RGBColor(200, 150, 0)
+
+tf = interp_box.text_frame
+tf.word_wrap = True
+tf.margin_left = Inches(0.1)
+add_bullet_text(tf, "What We See: Agent mastered basic survival (wood, stone, food) but struggles with complex multi-step tasks", level=0, font_size=12, bold=True, color=RGBColor(100, 70, 0))
+add_bullet_text(tf, "Strong: Place table (81%), Eat cow (72%), Collect wood/stone/sapling (60-80%) - Simple, immediate-reward tasks", level=1, font_size=11)
+add_bullet_text(tf, "Weak: Make iron pickaxe (0%), Diamond (0%) - Require long chains of prerequisites: wood→table→pickaxe→stone→furnace→iron", level=1, font_size=11)
+
 # Add summary boxes
-add_info_box(slide, Inches(0.5), Inches(6.5), Inches(2.2), Inches(0.7),
+add_info_box(slide, Inches(0.5), Inches(6.6), Inches(2.2), Inches(0.6),
              "10/22 Achievements", COLOR_SUCCESS)
-add_info_box(slide, Inches(3), Inches(6.5), Inches(2.2), Inches(0.7),
+add_info_box(slide, Inches(2.9), Inches(6.6), Inches(2.3), Inches(0.6),
              "32.91% Crafter Score", COLOR_ACCENT)
-add_info_box(slide, Inches(5.5), Inches(6.5), Inches(2.2), Inches(0.7),
-             "Gap to Human: 50% vs 33%", COLOR_WARNING)
-add_info_box(slide, Inches(8), Inches(6.5), Inches(1.5), Inches(0.7),
+add_info_box(slide, Inches(5.4), Inches(6.6), Inches(2.8), Inches(0.6),
+             "Gap: Human 50% vs Agent 33%", COLOR_WARNING)
+add_info_box(slide, Inches(8.4), Inches(6.6), Inches(1.1), Inches(0.6),
              "BONUS ✓", COLOR_SUCCESS)
 
 # Slide 10: Training Metrics
 print("Slide 10: Training Metrics...")
-slide = add_content_slide(prs, "Training Metrics: Loss and Q-Values Evolution")
+slide = add_content_slide(prs, "Training Metrics: Internal Learning Dynamics")
+
+# Add explanation at top
+exp_box = slide.shapes.add_textbox(Inches(0.2), Inches(0.95), Inches(9.6), Inches(0.25))
+tf = exp_box.text_frame
+tf.text = "What's Happening Inside: TD loss convergence + Q-value evolution + exploration decay = healthy learning signal"
+tf.paragraphs[0].font.size = Pt(12)
+tf.paragraphs[0].font.bold = True
+tf.paragraphs[0].font.color.rgb = COLOR_TITLE
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
 
 # Add training metrics plot
 metrics_path = "logdir/enhanced-dqn/plots/training_metrics.png"
 if os.path.exists(metrics_path):
-    pic = slide.shapes.add_picture(metrics_path, Inches(0.2), Inches(1.2), width=Inches(9.6))
+    pic = slide.shapes.add_picture(metrics_path, Inches(0.2), Inches(1.25), width=Inches(9.6))
     print(f"  Added: {metrics_path}")
 
-# Add caption
-caption_box = slide.shapes.add_textbox(Inches(0.5), Inches(6.8), Inches(9), Inches(0.5))
-tf = caption_box.text_frame
+# Add detailed interpretation box
+interp_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(0.5), Inches(6.5),
+    Inches(9), Inches(0.75)
+)
+interp_box.fill.solid()
+interp_box.fill.fore_color.rgb = RGBColor(240, 250, 240)
+interp_box.line.color.rgb = COLOR_SUCCESS
+
+tf = interp_box.text_frame
 tf.word_wrap = True
-add_bullet_text(tf, "Loss converges to ~0.014 | Q-values stabilize at 3-5 (matching returns) | Epsilon decay 1.0→0.01", level=0, font_size=12)
-add_bullet_text(tf, "Healthy learning dynamics: No divergence, stable convergence, appropriate Q-value magnitudes", level=0, font_size=11)
+tf.margin_left = Inches(0.1)
+add_bullet_text(tf, "What This Tells Us: All signs of stable, healthy learning", level=0, font_size=13, bold=True, color=COLOR_TITLE)
+add_bullet_text(tf, "TD Loss (top-left): Converges from 0.02→0.014, no divergence = Q-network learns accurate value predictions", level=1, font_size=11)
+add_bullet_text(tf, "Q-Values (top-right): Stabilize at 3-5 range, matches actual episode returns (4.90) = well-calibrated", level=1, font_size=11)
+add_bullet_text(tf, "Epsilon (bottom): Smooth decay 1.0→0.01 over 50k steps = balanced exploration → exploitation transition", level=1, font_size=11)
 
 # Slide 11: Emergent Behaviors
 print("Slide 11: Emergent Behaviors...")
