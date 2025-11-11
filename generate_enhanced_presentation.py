@@ -233,8 +233,197 @@ add_bullet_text(tf, "✓ Better credit assignment over long sequences", level=1,
 tf.add_paragraph()
 add_bullet_text(tf, "Hyperparameters: LR=1e-4 | Buffer=100k | Batch=32 | γ=0.99 | Target Update=2500", level=0, font_size=13)
 
-# Slide 4: Comprehensive Results Table
-print("Slide 4: Comprehensive Results...")
+# Slide 4: Network Architecture
+print("Slide 4: Network Architecture...")
+slide = add_content_slide(prs, "Neural Network Architecture: Dueling DQN")
+
+# Add explanation at top
+exp_box = slide.shapes.add_textbox(Inches(0.3), Inches(0.95), Inches(9.4), Inches(0.25))
+tf = exp_box.text_frame
+tf.text = "Convolutional Feature Extraction + Dueling Heads: Separate learning of state value V(s) and action advantages A(s,a)"
+tf.paragraphs[0].font.size = Pt(12)
+tf.paragraphs[0].font.bold = True
+tf.paragraphs[0].font.color.rgb = COLOR_TITLE
+tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+
+# Create network architecture diagram
+# Input layer
+y_pos = Inches(1.3)
+box_height = Inches(0.5)
+box_width = Inches(2.5)
+
+# Input
+input_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(3.75), y_pos,
+    box_width, box_height
+)
+input_box.fill.solid()
+input_box.fill.fore_color.rgb = RGBColor(200, 230, 255)
+input_box.line.color.rgb = COLOR_ACCENT
+tf = input_box.text_frame
+tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+p = tf.paragraphs[0]
+p.text = "Input: 64×64×3 RGB\n(12,288 dimensions)"
+p.font.size = Pt(12)
+p.font.bold = True
+p.alignment = PP_ALIGN.CENTER
+
+# Conv layers
+y_pos += Inches(0.7)
+conv_layers = [
+    ("Conv1: 32 filters, 8×8, stride 4", "→ 16×16×32"),
+    ("Conv2: 64 filters, 4×4, stride 2", "→ 8×8×64"),
+    ("Conv3: 64 filters, 3×3, stride 1", "→ 8×8×64")
+]
+
+for i, (conv_desc, output_dim) in enumerate(conv_layers):
+    conv_box = slide.shapes.add_shape(
+        MSO_SHAPE.ROUNDED_RECTANGLE,
+        Inches(3.75), y_pos,
+        box_width, box_height
+    )
+    conv_box.fill.solid()
+    conv_box.fill.fore_color.rgb = RGBColor(230, 245, 255)
+    conv_box.line.color.rgb = COLOR_ACCENT
+    tf = conv_box.text_frame
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    p = tf.paragraphs[0]
+    p.text = f"{conv_desc}\n{output_dim} + ReLU"
+    p.font.size = Pt(11)
+    p.alignment = PP_ALIGN.CENTER
+    y_pos += Inches(0.65)
+
+# Flatten
+flatten_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(3.75), y_pos,
+    box_width, Inches(0.4)
+)
+flatten_box.fill.solid()
+flatten_box.fill.fore_color.rgb = RGBColor(255, 245, 230)
+flatten_box.line.color.rgb = RGBColor(200, 150, 0)
+tf = flatten_box.text_frame
+tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+p = tf.paragraphs[0]
+p.text = "Flatten → 4,096 features"
+p.font.size = Pt(11)
+p.font.bold = True
+p.alignment = PP_ALIGN.CENTER
+
+# Dueling split
+y_pos += Inches(0.6)
+
+# Value Stream (left)
+value_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(1.5), y_pos,
+    Inches(3), Inches(0.9)
+)
+value_box.fill.solid()
+value_box.fill.fore_color.rgb = RGBColor(230, 255, 230)
+value_box.line.color.rgb = COLOR_SUCCESS
+tf = value_box.text_frame
+tf.word_wrap = True
+tf.margin_left = Inches(0.1)
+tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+p = tf.paragraphs[0]
+p.text = "Value Stream V(s)"
+p.font.size = Pt(14)
+p.font.bold = True
+p.font.color.rgb = COLOR_SUCCESS
+p.alignment = PP_ALIGN.CENTER
+p2 = tf.add_paragraph()
+p2.text = "FC: 4096 → 512 → 1"
+p2.font.size = Pt(11)
+p2.alignment = PP_ALIGN.CENTER
+p3 = tf.add_paragraph()
+p3.text = '"How good is this state?"'
+p3.font.size = Pt(10)
+p3.font.italic = True
+p3.alignment = PP_ALIGN.CENTER
+
+# Advantage Stream (right)
+adv_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(5.5), y_pos,
+    Inches(3), Inches(0.9)
+)
+adv_box.fill.solid()
+adv_box.fill.fore_color.rgb = RGBColor(255, 240, 240)
+adv_box.line.color.rgb = RGBColor(200, 100, 100)
+tf = adv_box.text_frame
+tf.word_wrap = True
+tf.margin_left = Inches(0.1)
+tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+p = tf.paragraphs[0]
+p.text = "Advantage Stream A(s,a)"
+p.font.size = Pt(14)
+p.font.bold = True
+p.font.color.rgb = RGBColor(180, 50, 50)
+p.alignment = PP_ALIGN.CENTER
+p2 = tf.add_paragraph()
+p2.text = "FC: 4096 → 512 → 17"
+p2.font.size = Pt(11)
+p2.alignment = PP_ALIGN.CENTER
+p3 = tf.add_paragraph()
+p3.text = '"Which action is better?"'
+p3.font.size = Pt(10)
+p3.font.italic = True
+p3.alignment = PP_ALIGN.CENTER
+
+# Combination
+y_pos += Inches(1.1)
+combine_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(2.5), y_pos,
+    Inches(5), Inches(0.5)
+)
+combine_box.fill.solid()
+combine_box.fill.fore_color.rgb = RGBColor(255, 250, 200)
+combine_box.line.color.rgb = RGBColor(200, 150, 0)
+tf = combine_box.text_frame
+tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+p = tf.paragraphs[0]
+p.text = "Combine: Q(s,a) = V(s) + [A(s,a) - mean(A(s,:))]"
+p.font.size = Pt(13)
+p.font.bold = True
+p.alignment = PP_ALIGN.CENTER
+
+# Output
+y_pos += Inches(0.7)
+output_box = slide.shapes.add_shape(
+    MSO_SHAPE.ROUNDED_RECTANGLE,
+    Inches(3.75), y_pos,
+    box_width, box_height
+)
+output_box.fill.solid()
+output_box.fill.fore_color.rgb = RGBColor(200, 255, 200)
+output_box.line.color.rgb = COLOR_SUCCESS
+tf = output_box.text_frame
+tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+p = tf.paragraphs[0]
+p.text = "Output: 17 Q-values\n(one per action)"
+p.font.size = Pt(12)
+p.font.bold = True
+p.alignment = PP_ALIGN.CENTER
+
+# Add arrows between layers
+from pptx.util import Inches
+from pptx.enum.shapes import MSO_SHAPE
+
+# Note about architecture
+note_box = slide.shapes.add_textbox(Inches(0.5), Inches(7), Inches(9), Inches(0.3))
+tf = note_box.text_frame
+tf.word_wrap = True
+p = tf.paragraphs[0]
+p.text = "Total Parameters: ~2.5M  |  Key Innovation: Dueling splits Q-learning into state evaluation (V) and action comparison (A)"
+p.font.size = Pt(10)
+p.font.italic = True
+p.alignment = PP_ALIGN.CENTER
+
+# Slide 5: Comprehensive Results Table
+print("Slide 5: Comprehensive Results...")
 slide = add_content_slide(prs, "Comprehensive Experimental Results", has_colored_bg=True)
 
 # Add context explanation
@@ -350,8 +539,8 @@ tf.paragraphs[0].font.size = Pt(10)
 tf.paragraphs[0].font.italic = True
 tf.paragraphs[0].alignment = PP_ALIGN.CENTER
 
-# Slide 5: Visual Comparison - Bar Chart
-print("Slide 5: Visual Comparison...")
+# Slide 6: Visual Comparison - Bar Chart
+print("Slide 6: Visual Comparison...")
 slide = add_content_slide(prs, "Best Configuration: Enhanced DQN Performance")
 
 # Add explanation at top
@@ -386,8 +575,8 @@ add_bullet_text(tf, "What This Shows: Performance summary of our best configurat
 add_bullet_text(tf, "Top panel: Evaluation reward over training - reaches 4.90 ± 0.16 (5.4× better than random baseline)", level=1, font_size=11)
 add_bullet_text(tf, "Bottom panel: Episode length - shows how many steps agent survives per episode (longer = better survival)", level=1, font_size=11)
 
-# Slide 6: Training Dynamics Comparison
-print("Slide 6: Training Dynamics...")
+# Slide 7: Training Dynamics Comparison
+print("Slide 7: Training Dynamics...")
 slide = add_content_slide(prs, "Training Dynamics: How the Agent Learns")
 
 # Add explanation at top
@@ -423,8 +612,8 @@ add_bullet_text(tf, "Phase 1 (0-50k steps): Exploration phase - ε decays from 1
 add_bullet_text(tf, "Phase 2 (50k-200k): Rapid learning - exploitation begins, sharp performance gain, reaches ~4.0 reward", level=1, font_size=11)
 add_bullet_text(tf, "Phase 3 (200k-1M): Refinement - gradual improvement to 4.90 ± 0.16, low variance = stable policy", level=1, font_size=11)
 
-# Slide 7: Exploration Experiment Deep Dive
-print("Slide 7: Exploration Experiment...")
+# Slide 8: Exploration Experiment Deep Dive
+print("Slide 8: Exploration Experiment...")
 slide = add_content_slide(prs, "Exploration Experiment: Does Longer Exploration Help?", has_colored_bg=True)
 
 # Top section - hypothesis
@@ -512,8 +701,8 @@ p2.font.size = Pt(14)
 p2.font.color.rgb = RGBColor(255, 255, 255)
 p2.alignment = PP_ALIGN.CENTER
 
-# Slide 8: Side-by-Side Training Curves
-print("Slide 8: Training Curves Comparison...")
+# Slide 9: Side-by-Side Training Curves
+print("Slide 9: Training Curves Comparison...")
 slide = add_content_slide(prs, "Visual Proof: Extended Exploration Hurts Performance")
 
 # Add explanation at top
@@ -573,8 +762,8 @@ tf.margin_left = Inches(0.1)
 tf.margin_top = Inches(0.05)
 add_bullet_text(tf, "Conclusion: Standard (top) shows sharp improvement at 50k → final 4.90. Extended (bottom) slows learning until 200k → only 4.33 (-12%). Why? Too much random exploration delays Q-network convergence to good policy.", level=0, font_size=11, bold=True, color=COLOR_ERROR)
 
-# Slide 9: Achievement Spectrum
-print("Slide 9: Achievement Spectrum...")
+# Slide 10: Achievement Spectrum
+print("Slide 10: Achievement Spectrum...")
 slide = add_content_slide(prs, "Achievement Spectrum: What Skills Were Learned? (BONUS)")
 
 # Add explanation at top
@@ -619,8 +808,8 @@ add_info_box(slide, Inches(5.4), Inches(6.6), Inches(2.8), Inches(0.6),
 add_info_box(slide, Inches(8.4), Inches(6.6), Inches(1.1), Inches(0.6),
              "BONUS ✓", COLOR_SUCCESS)
 
-# Slide 10: Training Metrics
-print("Slide 10: Training Metrics...")
+# Slide 11: Training Metrics
+print("Slide 11: Training Metrics...")
 slide = add_content_slide(prs, "Training Metrics: Internal Learning Dynamics")
 
 # Add explanation at top
@@ -656,8 +845,8 @@ add_bullet_text(tf, "TD Loss (top-left): Converges from 0.02→0.014, no diverge
 add_bullet_text(tf, "Q-Values (top-right): Stabilize at 3-5 range, matches actual episode returns (4.90) = well-calibrated", level=1, font_size=11)
 add_bullet_text(tf, "Epsilon (bottom): Smooth decay 1.0→0.01 over 50k steps = balanced exploration → exploitation transition", level=1, font_size=11)
 
-# Slide 11: Emergent Behaviors
-print("Slide 11: Emergent Behaviors...")
+# Slide 12: Emergent Behaviors
+print("Slide 12: Emergent Behaviors...")
 slide = add_content_slide(prs, "Emergent Behaviors & Observations", has_colored_bg=True)
 
 # Create three colored sections
@@ -741,8 +930,8 @@ add_bullet_text(tf, "Hard (5+ steps): 0/4 achieved (0-5% success) - stone_tools,
 tf.add_paragraph()
 add_bullet_text(tf, "→ Credit assignment over 5+ steps remains the key challenge", level=1, font_size=14, bold=True, color=COLOR_ERROR)
 
-# Slide 12: Conclusions
-print("Slide 12: Conclusions...")
+# Slide 13: Conclusions
+print("Slide 13: Conclusions...")
 slide = add_content_slide(prs, "Conclusions & Key Insights")
 
 # Split into two columns
@@ -790,8 +979,8 @@ add_bullet_text(tf, "Progressive achievement targets", level=2, font_size=14)
 add_bullet_text(tf, "5. Distributional RL:", level=1, font_size=16, bold=True)
 add_bullet_text(tf, "C51, QR-DQN, IQN", level=2, font_size=14)
 
-# Slide 13: Questions
-print("Slide 13: Questions...")
+# Slide 14: Questions
+print("Slide 14: Questions...")
 slide = add_content_slide(prs, "Thank You! Questions?", has_colored_bg=True)
 
 # Thank you box with gradient effect
